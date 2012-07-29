@@ -1,0 +1,21 @@
+﻿@using Jumbleblocks.Core.Security;
+
+@{
+    var identity = (User as IJumbleblocksPrincipal).Identity;
+ }
+
+<div id="login-info-box">
+    <div class="login-info-box-row">
+        <div class="login-info-box-cell">
+            Logged In:
+        </div>
+        <div class="login-info-box-cell">
+            @String.Format("{0} ({1} {2})", identity.Name, identity.Forename, identity.Surname)
+        </div>
+    </div>
+    <div class="login-info-box-row">
+       <div class="login-info-box-cell">
+            @Html.ActionLink("Log Out", "LogOut", "Authentication")
+       </div>
+    </div>
+</div>

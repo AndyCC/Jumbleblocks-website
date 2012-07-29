@@ -1,0 +1,33 @@
+﻿@model Jumbleblocks.Website.Models.Authentication.LoginViewModel
+
+<fieldset>
+    @Html.AntiForgeryToken()
+    
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Username)
+    </div>
+    <div class="editor-field"> 
+        @Html.EditorFor(model => model.Username)
+        @Html.ValidationMessageFor(model => model.Username)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Password)
+    </div>
+    <div class="editor-field"> 
+        @Html.PasswordFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+
+    @Html.HiddenFor(model => model.RedirectUrl)
+
+    <div class="validation-summary">
+       @if (!String.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+       {
+          <br />
+           @ViewBag.ErrorMessage
+       }
+    </div>
+
+    <input type="submit" value="Log in" />
+</fieldset>

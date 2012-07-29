@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]C:\Jumbleblocks  Blog New\Application\Website\Tests.Jumbleblocks.Website\Tests.Jumbleblocks.Website.csproj</TopNode>
+  <SelectedNode>[0-1078]Tests.Jumbleblocks.Website.RetrieveBlogTests</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\Jumbleblocks  Blog New\Application\Website\Tests.Jumbleblocks.Website\Tests.Jumbleblocks.Website.csproj" Expanded="true" />
+    <Node UniqueName="[0-1106]C:\Jumbleblocks  Blog New\Application\Website\Tests.Jumbleblocks.Website\bin\Debug\Tests.Jumbleblocks.Website.dll" Expanded="true" />
+    <Node UniqueName="[0-1107]Tests" Expanded="true" />
+    <Node UniqueName="[0-1108]Tests.Jumbleblocks" Expanded="true" />
+    <Node UniqueName="[0-1109]Tests.Jumbleblocks.Website" Expanded="true" />
+    <Node UniqueName="[0-1111]Tests.Jumbleblocks.Website.Admin" Expanded="true" />
+    <Node UniqueName="[0-1110]Tests.Jumbleblocks.Website.Blog" Expanded="true" />
+    <Node UniqueName="[0-1078]Tests.Jumbleblocks.Website.RetrieveBlogTests" Expanded="true" />
+  </Nodes>
+</VisualState>

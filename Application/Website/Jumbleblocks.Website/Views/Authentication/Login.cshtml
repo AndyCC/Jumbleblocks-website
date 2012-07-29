@@ -1,0 +1,13 @@
+﻿@model Jumbleblocks.Website.Models.Authentication.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Authentication"))
+{
+    @Html.Partial("_LoginFormContents");
+}

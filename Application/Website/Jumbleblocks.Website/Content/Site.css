@@ -1,0 +1,206 @@
+﻿
+#ImageViewer
+{
+    display:table;
+}
+
+#ImageViewerMainSectionContainer
+{
+    display:table-row;
+}
+
+.ImageViewerMainSectionCell
+{
+    display:table-cell;
+}
+
+#ImageViewerAvailablePages
+{
+    display:table-row;
+}
+
+.ImageViewerPageNumber
+{
+    display:table-cell;
+}
+
+.selected
+{
+    background-color:Red;
+}
+
+#ImageViewerPage
+{
+    display:table;
+    border-collapse:collapse;
+}
+
+.ImageViewerRow
+{
+    display:table-row;
+}
+
+.ImageBox
+{
+     display:table-cell;
+}
+
+.EnlargedImageBox
+{
+    display: inline;
+}
+
+.selectedImage
+{
+    background-color:Red;
+}
+
+img
+{
+    border : 0px;
+}
+
+.blog-article
+{
+    font-family :  Arial;
+    min-height : 110px;
+    margin-bottom : 1em;
+    margin-top: 1em;
+    clear:both;
+}
+
+.blog-article > header
+{
+   font-size: 47px;
+   font-weight: bold;
+   font-variant: small-caps;
+}
+
+.blog-article > header > a
+{
+    color: black;
+    text-decoration: none;
+}
+
+.blog-article > header > a:hover
+{
+    color: #5E879A;
+    text-decoration: none;
+}
+
+.blog-article >  img
+{
+    max-width : 100px;
+    max-height : 100px;
+}
+
+.align-left
+{
+    float:left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.publication-information
+{
+    margin-top : 0px;
+    padding-top:0px;
+    font-family : Arial;
+    font-size : 12px;
+    font-style : italic;
+    display: inline-block;
+}
+
+.author
+{
+    margin-right : 15px;
+    font-variant : small-caps;
+}
+
+.blog-article-text
+{
+    margin-top : 0.5em;
+    padding-top: 0px;
+    font-size : 14px;
+}
+
+.blog-article-text > code
+{
+    display : table;
+    white-space: pre-wrap; 
+}
+
+#paging-links
+{
+    clear: both;
+}
+
+/*.paging-page-number*/
+#paging-links > .paging-page-number
+{
+    display: inline-block;
+    background-color: #5E879A;
+    padding: 5px;
+    color:Black;
+    text-decoration: none;
+}
+
+#paging-links > a:hover
+{
+   background-color: White;
+}
+
+#paging-links > .current-page
+{
+    background-color : White;
+}
+
+.articleListingTable 
+{
+    display:table;
+    border-collapse: collapse;
+}
+
+.articleListingRow
+{
+    display: table-row;
+    border: 1px solid black;
+}
+
+.even
+{
+    background-color: #C4FFFB;
+}
+
+.odd
+{
+    background-color: #3FD5FF;
+}
+
+.articleListingHeader
+{
+    display:table-header-group;
+    font-weight: bold;
+}
+
+.articleListingCell
+{
+    display: table-cell;
+    padding: 3px;
+    border: 1px solid black;
+}
+
+.simpleTable
+{
+    display:table;
+}
+
+.simpleTable > ul
+{
+    display:table-row;
+}
+
+.simpleTable > li
+{
+    display:table-cell;
+}

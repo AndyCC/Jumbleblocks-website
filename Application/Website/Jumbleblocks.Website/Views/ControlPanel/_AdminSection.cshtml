@@ -1,0 +1,19 @@
+﻿@using Jumbleblocks.Website.Models.Admin;
+
+@model AdminSectionViewModel
+
+<section class="choices">
+    <p class="name">@Model.Name</p>
+
+   <div class="simpleTable">
+    @foreach (AdminSectionLink link in @Model.Links)
+    {
+       <ul>
+          <li>
+           @Html.ActionLink(link.Text, link.ActionName, link.ControllerName)
+           </li>
+        </ul>
+    }
+    </div>
+  
+</section>

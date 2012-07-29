@@ -1,0 +1,25 @@
+﻿@model Jumbleblocks.Website.Models.Admin.ControlPanelViewModel
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>ControlPanel</title>
+</head>
+<body>
+  <div class="ControlPanel">
+    @foreach (var section in Model.Sections)
+    {
+        Html.RenderPartial("_AdminSection", section);
+        
+        <br />
+    }
+  </div>
+   
+  @Html.Partial("_LoggedIn")
+</body>
+</html>

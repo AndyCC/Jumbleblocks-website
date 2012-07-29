@@ -1,0 +1,35 @@
+For after 29/07/2012
+
+double check no domain logic in controllers and make sure code is clean within controllers
+Delete Post
+Set Title image from configuration
+Check it edit/create/delete post should have Validation Token
+Paging on BlogPost listing  (Admin)
+Way back from edit post to listing (Admin)
+Style Login page
+Style create/edit blog page including fixing issues + styling around the image viewer
+BlogPost Create/Edit load multiple tags in one go
+Style FullBlogPost page to centre content
+
+Ajax-ify paging with partial views (both front page and listing)
+Ajax-ify edit on listing page so blog post edit pops up rather than displays on new page
+
+Add image delimeter to "wane text" and force it to have to have a source property.
+Javascript control + HTML helper for "wane text" to give a rich text editor to Full article and description on Create/Edit view 
+
+
+Create/Edit Add javascript to transfer a selection from "Full Article" to "Description"
+
+
+Image uploader on create/edit.
+
+Integrate Security with OpenAuth (http://www.dotnetopenauth.net)
+Visitor login with OpenAuth
+Investigate Javascript Templating engine for comments
+Add Comment
+Edit Comment
+Remove Comment
+Parse comment for rude/offensive words and phrases
+Reply to comment
+
+Inline editing of posts.

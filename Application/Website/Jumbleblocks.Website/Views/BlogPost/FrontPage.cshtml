@@ -1,0 +1,52 @@
+﻿@model Jumbleblocks.Website.Models.BlogPost.FrontPageModel
+
+@{
+    ViewBag.Title = @ViewBag.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach(var summary in Model.Summaries)
+{
+    <article class="blog-article">
+        <header> @Html.ActionLink(summary.Title, "Show", "BlogPost", new { year = summary.LinkYear, month = summary.LinkMonth, day = summary.LinkDay, title = Html.Encode(summary.Title) }, null)</header>
+
+        @if (summary.ImageUrl != null)
+        {
+          <a class="align-left" href="@Url.Action("Show", "BlogPost", new { year = summary.LinkYear, month = summary.LinkMonth, day = summary.LinkDay, title = Html.Encode(summary.Title) })"> 
+          <img src="@Url.Content(summary.ImageUrl.ToString())" alt="Blog Image" /> 
+          </a>
+        }
+        <div class="publication-information"><span class="author">@summary.AuthorsName</span><span class="date">@summary.PublishedDate.ToString("dd/MM/yyyy")</span></div>
+   
+        <p class="blog-article-test">@Html.Raw(summary.Description)</p>
+
+    </article>
+}
+
+
+    <!-- TODO: replace with Ajax,
+         TODO: extract into helper
+         TODO: make so if too many pages then has left + right arrows -->
+<section id="paging-links">
+
+@if (Model.Paging.PageCount > 1)
+{
+    for (int i = 1; i <= Model.Paging.PageCount; i++)
+    {
+        string cssClass = "paging-page-number";
+            
+        cssClass += i == Model.Paging.CurrentPage ? " current-page" : " other";
+
+     
+        @Html.ActionLink(i.ToString(), "Index", new { page = i }, new { @class = cssClass });
+    
+                                                                                            
+
+        @*if (i != Model.Paging.PageCount)
+        {
+           @:|
+        }*@
+     }
+}
+</section>
+

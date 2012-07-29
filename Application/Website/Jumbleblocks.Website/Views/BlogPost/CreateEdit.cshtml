@@ -1,0 +1,153 @@
+﻿@model Jumbleblocks.Website.Models.BlogPost.CreateEditModel
+
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    
+    if(Model == null || Model.BlogPostId.HasValue)
+    {
+        ViewBag.Title = "Create";
+    }
+    else
+    {
+        ViewBag.Title = "Edit";
+    }
+}
+
+  <script type="text/javascript" language="javascript">
+
+      $(document).ready(function () {
+
+          var $element = $("#ImageViewer");
+          var imageViewer = jQuery.jumbleblocks.imageViewer.createImageViewerWithin($element);
+
+          imageViewer.registerListener(imageViewer.ImageSelectedEventName, function (evt) {
+              var imageId = -1;
+
+              if (evt.imageIsSelected) {
+                  imageId = evt.selectedImage.id;
+              }
+
+              $("#ImageId").val(imageId);
+
+          });
+      });
+
+  </script>
+
+<h2>Create</h2>
+
+ @if (!String.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+ {
+    <div class="form-validation-summary">
+          @ViewBag.ErrorMessage      
+    </div>
+ }
+
+@using (Html.BeginForm("Save", "BlogPost"))
+{
+    <fieldset>
+       @if (Model != null)
+       {
+
+           if (Model.BlogPostId.HasValue)
+           {
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BlogPostId)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.BlogPostId, new { @readonly = "readonly" })
+            </div>
+           }
+
+           if (Model.PublishedDate.HasValue)
+           {    
+             <div class="editor-label">
+                @Html.LabelFor(model => model.PublishedDate)
+            </div>
+            <div class="editor-field"> 
+                @Html.TextBoxFor(model => model.PublishedDate, new { @readonly = "readonly" })
+            </div>
+           }
+       }
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+
+        <div class="editor-field"> 
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+
+        <div class="editor-field"> 
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullArticle)
+                
+        </div>
+
+        <div class="editor-field"> 
+            @Html.EditorFor(model => model.FullArticle)
+            @Html.ValidationMessageFor(model => model.FullArticle) 
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TagTexts)
+        </div>
+
+        <div class="editor-field"> 
+            @Html.EditorFor(model => model.TagTexts)
+            @Html.ValidationMessageFor(model => model.TagTexts) 
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SeriesName)
+        </div>
+
+        <div class="editor-field"> 
+           @Html.EditorFor(model => model.SeriesName)
+           @Html.ValidationMessageFor(model => model.SeriesName) 
+        </div>
+
+        <br />
+        <div> Select a Title Image </div>
+
+       <div id="ImageViewer">
+       <div id="ImageViewerMainSectionContainer" class="ImageViewerMainSectionCell">
+         <div id="ImageViewerPagerLeft"> 
+                left
+         </div>
+         <div class="ImageViewerMainSectionCell">
+            <div id="ImageViewerPage">
+                <ul class="ImageViewerRow">
+                    <li class="ImageBox"><img class="ImageBoxImage" src="/BlogImages/Loading.png" alt="Image Holder" /></li>
+                    <li class="ImageBox"><img class="ImageBoxImage" src="/BlogImages/Loading.png" alt="Image Holder" /></li>
+                </ul>
+                 <ul class="ImageViewerRow">
+                    <li class="ImageBox"><img class="ImageBoxImage" src="/BlogImages/Loading.png" alt="Image Holder" /></li>          
+                    <li class="ImageBox"><img class="ImageBoxImage" src="/BlogImages/Loading.png" alt="Image Holder" /></li>
+                </ul>
+            </div>
+          </div>
+          <div id="ImageViewerPagerRight" class="ImageViewerMainSectionCell"> 
+                right
+           </div>
+       </div>
+      <div id="ImageViewerAvailablePages">
+           <div class="ImageViewerPageNumber" ><a class="boo" href="#">1</a></div>
+       </div>     
+    </div>
+
+        @Html.EditorFor(model => model.ImageId)
+    </fieldset>
+    <input type="submit" value="Save" />
+
+}

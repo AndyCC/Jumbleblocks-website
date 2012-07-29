@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1022]Tests.Jumbleblocks.Web.Blog.Blog.AuthenticationControllerTests.Login_GIVEN_RedirectUrl_Provided_Is_EmptyString_WHEN_WebAuthenticator_Returns_Authenticated_User_THEN_Returns_RedirectUrl_To_DefaultRedirectUrl</TopNode>
+  <SelectedNode>[0-1101]Tests.Jumbleblocks.Web.Blog.Blog.EditArticleTests</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\JumbleBlocks Blog\JumbleBlocks.Blog\Application\Tests.Web.Blog\Tests.Web.Blog.csproj" Expanded="true" />
+    <Node UniqueName="[0-1105]C:\JumbleBlocks Blog\JumbleBlocks.Blog\Application\Tests.Web.Blog\bin\Debug\Tests.Jumbleblocks.Web.Blog.dll" Expanded="true" />
+    <Node UniqueName="[0-1106]Tests" Expanded="true" />
+    <Node UniqueName="[0-1107]Tests.Jumbleblocks" Expanded="true" />
+    <Node UniqueName="[0-1108]Tests.Jumbleblocks.Web" Expanded="true" />
+    <Node UniqueName="[0-1109]Tests.Jumbleblocks.Web.Blog" Expanded="true" />
+    <Node UniqueName="[0-1111]Tests.Jumbleblocks.Web.Blog.Admin" Expanded="true" />
+    <Node UniqueName="[0-1110]Tests.Jumbleblocks.Web.Blog.Blog" Expanded="true" />
+    <Node UniqueName="[0-1005]Tests.Jumbleblocks.Web.Blog.Blog.AuthenticationControllerTests" Expanded="true" />
+    <Node UniqueName="[0-1076]Tests.Jumbleblocks.Web.Blog.Blog.CreateArticleTests" Expanded="true" />
+    <Node UniqueName="[0-1101]Tests.Jumbleblocks.Web.Blog.Blog.EditArticleTests" Expanded="true" />
+  </Nodes>
+</VisualState>

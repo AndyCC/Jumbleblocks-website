@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@ViewBag.Title</title>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.2.js")" ></script>
+    <link rel="Stylesheet" type="text/css" href="@Url.Content("~/Content/Site.css")" />
+</head>
+
+<body>
+    <header>
+        <a href="@Url.Action("Index", "BlogPost")"><img src="@Url.Content("~/BlogImages/Jumbleblocks2.png")" alt="site logo" /></a>
+    </header>
+
+     @RenderBody()
+</body>
+</html>
+

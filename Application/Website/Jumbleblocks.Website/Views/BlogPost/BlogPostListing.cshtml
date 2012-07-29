@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Jumbleblocks.Website.Models.BlogPost.BlogPostListingItemModel>
+
+@{
+    ViewBag.Title = "ArticleListing";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>All Published Articles</h2>
+
+<div class="articleListingTable">
+   <ul class="articleListingRow articleListingHeader">
+       <li class="articleListingCell">Id</li> 
+       <li class="articleListingCell">Title</li> 
+       <li class="articleListingCell">Publication Date</li> 
+       <li class="articleListingCell">Authors Name</li>
+       <li class="articleListingCell"></li>
+   </ul>
+
+   @{
+       bool isOddRow = true;
+   
+       foreach(var actualModel in Model)
+       {
+           isOddRow = !isOddRow;
+           
+           var rowClassName = isOddRow ? "odd" : "even";
+       
+           <ul class="articleListingRow @rowClassName">
+               <li class="articleListingCell">@actualModel.BlogPostId</li> 
+               <li class="articleListingCell">@actualModel.Title</li>
+               <li class="articleListingCell">@actualModel.PublishedDate.ToString("dd/MM/yyyy")</li>
+               <li class="articleListingCell">@actualModel.AuthorsName</li>
+               <li class="articleListingCell">@Html.ActionLink("Edit", "Edit", new { blogPostId = actualModel.BlogPostId})</li>
+           </ul>
+       }                                                                               
+   }
+   
+</div>

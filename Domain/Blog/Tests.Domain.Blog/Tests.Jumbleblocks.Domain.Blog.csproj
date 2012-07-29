@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE7624E5-A7AE-4B7D-847C-CAECCFCB9C7F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tests.Jumbleblocks.Blog.Domain</RootNamespace>
+    <AssemblyName>Tests.Jumbleblocks.Domain.Blog</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\..\resources\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.0.11089, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BlogUserTests.cs" />
+    <Compile Include="Deletion\BlogPostDeleterTests.cs" />
+    <Compile Include="BlogPostTests.cs" />
+    <Compile Include="ImageReferenceTests.cs" />
+    <Compile Include="Paging\BlogPostPagerTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Elastic\Jumbleblocks.TestingHelpers\Jumbleblocks.Testing.csproj">
+      <Project>{B82137E9-E65A-449A-8BB4-4F058631FB56}</Project>
+      <Name>Jumbleblocks.Testing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\Core\Jumbleblocks.Core\Jumbleblocks.Core.csproj">
+      <Project>{94650920-9708-4EBD-BCE7-435D8F68F2EA}</Project>
+      <Name>Jumbleblocks.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Jumbleblocks.Domain\Jumbleblocks.Domain.csproj">
+      <Project>{9830CBF6-84C4-441E-A303-B036ABF74131}</Project>
+      <Name>Jumbleblocks.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Blog\Jumbleblocks.Domain.Blog.csproj">
+      <Project>{F658ABC3-C5E9-43B2-980E-A6D99DAD7A62}</Project>
+      <Name>Jumbleblocks.Domain.Blog</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

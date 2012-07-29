@@ -1,0 +1,20 @@
+﻿@model Jumbleblocks.Website.Models.BlogPost.FullBlogPostModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ <article class="blog-article">
+        <header>@Model.Title</header>
+
+        @if (!String.IsNullOrWhiteSpace(Model.ImageUrl))
+        {
+          <img class="align-left" src="@Url.Content(Model.ImageUrl)" alt="Blog Image" /> 
+            
+        }
+        
+        <div class="publication-information"><span class="author">@Model.AuthorsName</span><span class="date">@Model.PublishedDate.ToString("dd/MM/yyyy")</span></div>
+   
+        <p class="blog-article-text"> @Html.Raw(Model.FullArticle)</p>
+
+ </article>
