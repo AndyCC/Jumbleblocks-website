@@ -33,3 +33,12 @@ Parse comment for rude/offensive words and phrases
 Reply to comment
 
 Inline editing of posts.
+
+user listing
+Add user
+remove user
+block user
+registration  + options on where to allow
+assign operations to roles
+create roles
+assign roles to users

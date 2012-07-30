@@ -50,7 +50,7 @@
     <Compile Include="UserTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Elastic\Jumbleblocks.TestingHelpers\Jumbleblocks.Testing.csproj">
+    <ProjectReference Include="..\..\..\Testing\Core\Jumbleblocks.Testing.csproj">
       <Project>{B82137E9-E65A-449A-8BB4-4F058631FB56}</Project>
       <Name>Jumbleblocks.Testing</Name>
     </ProjectReference>
