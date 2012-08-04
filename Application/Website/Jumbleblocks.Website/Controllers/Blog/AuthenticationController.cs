@@ -62,7 +62,6 @@ namespace Jumbleblocks.Website.Controllers.Blog
             return View("Login");
         }
 
-        //TODO: extract out into helper class
         private string DetermineRedirectUrl(string redirectUrl)
         {
             if(String.IsNullOrWhiteSpace(redirectUrl))

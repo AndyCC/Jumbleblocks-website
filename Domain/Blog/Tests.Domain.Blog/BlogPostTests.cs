@@ -389,9 +389,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
 
             post.MarkAsDeleted(deletionUser);
 
-            post.DeletedDate.HasValue.ShouldBeTrue();
-            post.DeletedDate.Value.ShouldBeWithinLast(new TimeSpan(0, 0, 10));
-
+            post.DeletedDate.ShouldBeWithinLast(new TimeSpan(0, 0, 10));
             post.DeletedByUser.ShouldEqual(deletionUser);
         }
 
@@ -411,7 +409,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
 
             post.MarkAsDeleted(deletionUser);
 
-            post.DeletedDate.Value.ShouldNotBeWithinLast(waitBetweenUpdates);
+            post.DeletedDate.ShouldNotBeWithinLast(waitBetweenUpdates);
         }
 
         [Test]

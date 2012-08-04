@@ -1,0 +1,12 @@
+﻿@model Jumbleblocks.Website.Models.BlogPost.DeletedModel
+
+@{
+    ViewBag.Title = "Deleted";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+Deleted blog post with id '@Model.BlogPostId' and title '@Model.Title'
+
+<br />
+<a href="@Request.UrlReferrer.AbsolutePath">Back</a>

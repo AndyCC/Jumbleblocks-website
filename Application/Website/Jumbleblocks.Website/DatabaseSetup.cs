@@ -48,8 +48,9 @@ namespace Jumbleblocks.Website
                 db.Dialect<MsSql2008FixedDialect>();
                 db.IsolationLevel = IsolationLevel.ReadCommitted;
                 db.ConnectionString = configurationReader.ConnectionStrings["BlogDb"].ConnectionString;
-                db.Timeout = 10;
                 db.BatchSize = 100;
+               
+               
 
                 //for testing
                 db.LogFormattedSql = true;

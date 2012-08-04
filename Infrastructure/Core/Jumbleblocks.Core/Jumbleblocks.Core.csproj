@@ -50,6 +50,7 @@
     <Compile Include="Security\IJumbleblocksIdentity.cs" />
     <Compile Include="Security\IJumbleblocksPrincipal.cs" />
     <Compile Include="Security\IJumbleblocksSecurityService.cs" />
+    <Compile Include="Security\PrincipalHelpers.cs" />
     <Compile Include="StringArgumentNullOrEmptyException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

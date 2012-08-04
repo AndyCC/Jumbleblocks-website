@@ -28,6 +28,7 @@ namespace Jumbleblocks.nHibernate
                 using (var transaction = session.BeginTransaction())
                 {
                     result = function.Invoke();
+
                     transaction.Commit();
                 }
 

@@ -53,6 +53,7 @@
     <Compile Include="Admin\ControlPanelControllerTests.cs" />
     <Compile Include="Blog\AuthenticationControllerTests.cs" />
     <Compile Include="Blog\CreateArticleTests.cs" />
+    <Compile Include="Blog\DeleteArticleTests.cs" />
     <Compile Include="Blog\EditArticleTests.cs" />
     <Compile Include="Blog\ImageControllerTests.cs" />
     <Compile Include="Blog\ListArticleTests.cs" />

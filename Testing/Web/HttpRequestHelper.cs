@@ -62,9 +62,7 @@ namespace Jumbleblocks.Testing.Web
                 throw new ArgumentNullException("referrerUrl");
 
             var mock = Mock.Get(request);
-
-            mock.Setup(r => r.UrlReferrer)
-                .Returns(new Uri(referrerUrl));
+            mock.Setup(r => r.UrlReferrer).Returns(new Uri(referrerUrl));
 
             return request;
         }

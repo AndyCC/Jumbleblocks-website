@@ -1,11 +1,19 @@
 For after 29/07/2012
 
-double check no domain logic in controllers and make sure code is clean within controllers
-Delete Post
+
 Set Title image from configuration
 Check it edit/create/delete post should have Validation Token
 Paging on BlogPost listing  (Admin)
 Way back from edit post to listing (Admin)
+Style front page better
+
+get rid of ? in url when what value after /  not ?
+
+listing view dont show deleted
+
+
+---release---
+
 Style Login page
 Style create/edit blog page including fixing issues + styling around the image viewer
 BlogPost Create/Edit load multiple tags in one go
@@ -42,3 +50,6 @@ registration  + options on where to allow
 assign operations to roles
 create roles
 assign roles to users
+
+
+styling for different browsers

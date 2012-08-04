@@ -47,6 +47,7 @@ namespace Jumbleblocks.Website.Controllers.Blog
             Logger = logger;
         }
 
+        protected const char TagSeperator = ';';
 
         /// <summary>
         /// Gets BlogPostRepository
@@ -77,6 +78,14 @@ namespace Jumbleblocks.Website.Controllers.Blog
         /// Logger
         /// </summary>
         protected IJumbleblocksLogger Logger { get; private set; }
+
+        /// <summary>
+        /// Gets the principal of the current user
+        /// </summary>
+        protected IJumbleblocksPrincipal JumbleblocksPrincipal
+        {
+            get { return (IJumbleblocksPrincipal)User; }
+        }
 
         /// <summary>
         /// Transforms wane text to HTML
@@ -151,6 +160,14 @@ namespace Jumbleblocks.Website.Controllers.Blog
             }
         }
 
+        /// <summary>
+        /// Shows an article
+        /// </summary>
+        /// <param name="year">year of article</param>
+        /// <param name="month">month of article</param>
+        /// <param name="day">day of article</param>
+        /// <param name="title">title of article</param>
+        /// <returns>ActionResult</returns>
         public ActionResult Show(int year, int month, int day, string title)
         {
             BlogPost post = BlogPostRepository.LoadFrom(year, month, day, title);
@@ -179,7 +196,6 @@ namespace Jumbleblocks.Website.Controllers.Blog
                 };
 
                 ViewData.Model = viewModel;
-
                 ViewBag.Title = String.Format("{0} : {1}", BlogSettings.Title, title);
 
                 return View("FullBlogPost");
@@ -223,15 +239,10 @@ namespace Jumbleblocks.Website.Controllers.Blog
         {
             BlogPost post = BlogPostRepository.Load(blogPostId);
 
-            string seriesName = post.Series == null ? String.Empty : post.Series.Name; 
+            string seriesName = post.Series == null ? String.Empty : post.Series.Name;
             
-            //TODO: need common place for seperator
-            string tagTexts = post.Tags.ToSeperatedString(t => t.Text, ";");
-            
-            int? imageReferenceId = null;
-
-            if (post.ImageReference != null && post.ImageReference.Id.HasValue)
-                imageReferenceId = post.ImageReference.Id.Value;
+            int? imageReferenceId = post.GetImageReferenceId();
+            string tagTexts = post.GetTagsAsSeperatedString(TagSeperator);           
 
             var viewModel = new CreateEditModel
             {
@@ -253,7 +264,18 @@ namespace Jumbleblocks.Website.Controllers.Blog
         [AuthorizeOperation("Delete Blog Post")]
         public ActionResult Delete(int blogPostId)
         {
-            throw new NotImplementedException();
+            BlogPost blogPost = BlogPostRepository.LoadFullArticle(blogPostId); //nHibernate won't update objects with lazy load properties
+
+            if (blogPost != null)
+            {
+                var blogPostDeleter = new BlogPostDeleter(BlogPostRepository, LookupRepository);
+                blogPostDeleter.MarkAsDeleted(blogPost, JumbleblocksPrincipal.Identity.UserId.Value);
+
+                ViewData.Model = new DeletedModel { BlogPostId = blogPost.Id.Value, Title = blogPost.Title };
+                return View("Deleted");
+            }
+
+            return Redirect(Request.UrlReferrer.AbsoluteUri);
         }
 
         protected IBlogPostDeleter CreateBlogPostDeleter()
@@ -292,8 +314,7 @@ namespace Jumbleblocks.Website.Controllers.Blog
                 {
                     ImageReference imageReference = LookupRepository.LoadForId<ImageReference>(viewModel.ImageId);
 
-                    var principal = (IJumbleblocksPrincipal)User;
-                    BlogUser user = LookupRepository.LoadForId<BlogUser>(principal.Identity.UserId);
+                    BlogUser user = LookupRepository.LoadForId<BlogUser>(JumbleblocksPrincipal.Identity.UserId);
 
                     blogPost = new BlogPost(viewModel.Title,
                                                 viewModel.Description,
@@ -324,12 +345,10 @@ namespace Jumbleblocks.Website.Controllers.Blog
 
             if (!String.IsNullOrWhiteSpace(tagTexts))
             {
-                //TODO: need common place for seperator
-                string[] seperatedTagTexts = tagTexts.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] seperatedTagTexts = tagTexts.Split(new char[] { TagSeperator }, StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (string tagText in seperatedTagTexts.Select(s => s.Trim()))
                 {
-                    //TODO: refactor into single call to load multiple
                     Tag tag = LookupRepository.LoadForDescription<Tag>(t => t.Text, tagText);
 
                     if (tag == null && !String.IsNullOrWhiteSpace(tagTexts))

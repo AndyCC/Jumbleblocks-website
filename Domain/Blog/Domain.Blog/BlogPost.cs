@@ -170,6 +170,14 @@ namespace Jumbleblocks.Domain.Blog
             if(!ImageReference.IdsEqual(newImageReference))
                 ImageReference = newImageReference;
         }
+
+        public virtual int? GetImageReferenceId()
+        {
+            if (ImageReference == null || !ImageReference.Id.HasValue)
+                return null;
+            else
+                return ImageReference.Id.Value;
+        }
         
         /// <summary>
         /// Updates tags with new tags
@@ -183,6 +191,11 @@ namespace Jumbleblocks.Domain.Blog
 
             var distinctNewTags = tags.Distinct(_tagTextComparer);
             _tags.Update(distinctNewTags, removeUnfound);
+        }
+
+        public virtual string GetTagsAsSeperatedString(char seperator = ';')
+        {
+            return _tags.ToSeperatedString(t => t.Text, seperator.ToString());
         }
 
         /// <summary>

@@ -101,7 +101,7 @@ namespace Jumbleblocks.DAL.Blog
             ManyToOne(p => p.DeletedByUser, map =>
             {
                 map.Column("DeletedByUserId");
-                map.Cascade(Cascade.Detach | Cascade.Merge | Cascade.Persist | Cascade.ReAttach | Cascade.Refresh);
+                map.Cascade(Cascade.None);
             });
         
         }
