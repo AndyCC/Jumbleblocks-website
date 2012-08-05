@@ -1,7 +1,6 @@
 For after 29/07/2012
 
 
-Set Title image from configuration
 Check it edit/create/delete post should have Validation Token
 Paging on BlogPost listing  (Admin)
 Way back from edit post to listing (Admin)
@@ -13,6 +12,9 @@ listing view dont show deleted
 
 
 ---release---
+
+base repository shared between lookup and repository. Then can get rid of transaction helpers too
+nested master page if possible
 
 Style Login page
 Style create/edit blog page including fixing issues + styling around the image viewer

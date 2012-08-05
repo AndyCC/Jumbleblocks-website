@@ -7,6 +7,6 @@ namespace Jumbleblocks.Website
 {
     public static class BlogContants
     {
-        public static string BlogSettingsConfigName = "BlogSettings";
+        public static string BlogSettingsConfigName = "blogSettings";
     }
 }

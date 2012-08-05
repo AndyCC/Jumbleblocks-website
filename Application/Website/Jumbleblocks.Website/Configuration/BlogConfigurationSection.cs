@@ -14,52 +14,59 @@ namespace Jumbleblocks.Website.Configuration
         /// <summary>
         /// The title of the blog
         /// </summary>
-        [ConfigurationProperty("Title", IsRequired=true)]
+        [ConfigurationProperty("title", IsRequired=true)]
         public string Title
         {
-            get { return (string)this["Title"]; }
-            set { this["Title"] = value; }
+            get { return (string)this["title"]; }
+            set { this["title"] = value; }
         }
 
         /// <summary>
         /// The number of post summaries to show per page
         /// </summary>
-        [ConfigurationProperty("PagePostSummaryCount", DefaultValue=10, IsRequired=false)]
+        [ConfigurationProperty("pagePostSummaryCount", DefaultValue=10, IsRequired=false)]
         [IntegerValidator(MinValue=1, MaxValue=200)]
         public int PagePostSummaryCount
         {
-            get { return (int)this["PagePostSummaryCount"]; }
-            set { this["PagePostSummaryCount"] = value; }
+            get { return (int)this["pagePostSummaryCount"]; }
+            set { this["pagePostSummaryCount"] = value; }
         }
 
         /// <summary>
         /// default action
         /// </summary>
-        [ConfigurationProperty("DefaultAction", IsRequired = true)]
+        [ConfigurationProperty("defaultAction", IsRequired = true)]
         public string DefaultAction
         {
-            get { return (string)this["DefaultAction"]; }
-            set { this["DefaultAction"] = value; }
+            get { return (string)this["defaultAction"]; }
+            set { this["defaultAction"] = value; }
         }
 
         /// <summary>
         /// default controller
         /// </summary>
-        [ConfigurationProperty("DefaultController", IsRequired = true)]
+        [ConfigurationProperty("defaultController", IsRequired = true)]
         public string DefaultController
         {
-            get { return (string)this["DefaultController"]; }
-            set { this["DefaultController"] = value; }
+            get { return (string)this["defaultController"]; }
+            set { this["defaultController"] = value; }
         }
-       
+
+        [ConfigurationProperty("titleImagePath", IsRequired = true)]
+        public string TitleImagePath
+        {
+            get { return (string)this["titleImagePath"]; }
+            set { this["titleImagePath"] = value; }
+        }
+
         /// <summary>
         /// Gets the accepted redirect urls
         /// </summary>
-        [ConfigurationProperty("RedirectUrls", IsRequired=true)] 
+        [ConfigurationProperty("redirectUrls", IsRequired=true)] 
         public AcceptedRedirectUrlCollection AcceptedRedirectUrls
         {
-            get { return this["RedirectUrls"] as AcceptedRedirectUrlCollection; }
-            set { this["RedirectUrls"] = value; }
+            get { return this["redirectUrls"] as AcceptedRedirectUrlCollection; }
+            set { this["redirectUrls"] = value; }
         }
 
         /// <summary>

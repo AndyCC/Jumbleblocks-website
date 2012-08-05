@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using System.Configuration;
+@using Jumbleblocks.Website;
+@using Jumbleblocks.Website.Configuration;
+
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,7 +16,12 @@
 
 <body>
     <header>
-        <a href="@Url.Action("Index", "ControlPanel")"><img src="@Url.Content("~/BlogImages/Jumbleblocks2.png")" alt="site logo" /></a>
+    @{
+        var blogConfigurationSection = (BlogConfigurationSection)ConfigurationManager.GetSection(BlogContants.BlogSettingsConfigName);
+        var titleImage = blogConfigurationSection.TitleImagePath;
+    }
+     
+       <a href="@Url.Action("Index", "ControlPanel")"><img src="@Url.Content(titleImage)" alt="site logo" /></a>
     </header>
 
      @RenderBody()
