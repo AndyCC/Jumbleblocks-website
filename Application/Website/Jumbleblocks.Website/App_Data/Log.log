@@ -1,0 +1,78 @@
+2012-08-04 15:44:51,578 [5] ERROR Temp_Logger [(null)] - Error caught by global handler
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ /* criteria query */ SELECT this_.Id as Id0_0_, this_.Title as Title0_0_, this_.ImageReferenceId as ImageRef5_0_0_, this_.PublishedDate as Publishe6_0_0_, this_.AuthorId as AuthorId0_0_, this_.SeriesId as SeriesId0_0_, this_.DeletedByUserId as DeletedB9_0_0_, this_.DeletedDate as Deleted10_0_0_ FROM BlogPosts this_ WHERE this_.DeletedDate is null and this_.DeletedByUserId is null ORDER BY this_.PublishedDate desc ]
+[SQL: /* criteria query */ SELECT this_.Id as Id0_0_, this_.Title as Title0_0_, this_.ImageReferenceId as ImageRef5_0_0_, this_.PublishedDate as Publishe6_0_0_, this_.AuthorId as AuthorId0_0_, this_.SeriesId as SeriesId0_0_, this_.DeletedByUserId as DeletedB9_0_0_, this_.DeletedDate as Deleted10_0_0_ FROM BlogPosts this_ WHERE this_.DeletedDate is null and this_.DeletedByUserId is null ORDER BY this_.PublishedDate desc] ---> System.NotSupportedException: The query should start with 'SELECT' or 'SELECT DISTINCT'
+   at NHibernate.Dialect.MsSql2005Dialect.GetAfterSelectInsertPoint(SqlString sql)
+   at NHibernate.Dialect.MsSql2005Dialect.GetLimitString(SqlString queryString, SqlString offset, SqlString limit)
+   at NHibernate.Dialect.Dialect.GetLimitString(SqlString queryString, Nullable`1 offset, Nullable`1 limit, Parameter offsetParameter, Parameter limitParameter)
+   at NHibernate.Loader.Loader.AddLimitsParametersIfNeeded(SqlString sqlString, ICollection`1 parameterSpecs, QueryParameters queryParameters, ISessionImplementor session)
+   at NHibernate.Loader.Loader.CreateSqlCommand(QueryParameters queryParameters, ISessionImplementor session)
+   at NHibernate.Loader.Loader.PrepareQueryCommand(QueryParameters queryParameters, Boolean scroll, ISessionImplementor session)
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- End of inner exception stack trace ---
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   at NHibernate.Loader.Criteria.CriteriaLoader.List(ISessionImplementor session)
+   at NHibernate.Impl.SessionImpl.List(CriteriaImpl criteria, IList results)
+   at NHibernate.Impl.CriteriaImpl.List(IList results)
+   at NHibernate.Impl.CriteriaImpl.List[T]()
+   at NHibernate.Criterion.QueryOver`1.List()
+   at NHibernate.Criterion.QueryOver`1.NHibernate.IQueryOver<TRoot>.List()
+   at Jumbleblocks.DAL.Blog.BlogPostRepository.<>c__DisplayClass1.<GetPosts>b__0() in C:\GIT Repositories\Jumbleblocks-website\DAL\Blog\DAL.Blog\BlogPostRepository.cs:line 44
+   at Jumbleblocks.nHibernate.TransactionHelpers.Transact[TResult](ISession session, Func`1 function) in C:\GIT Repositories\Jumbleblocks-website\DAL\Core\NHibernate\TransactionHelpers.cs:line 30
+   at Jumbleblocks.nHibernate.Repository`1.Transact[TResult](Func`1 function) in C:\GIT Repositories\Jumbleblocks-website\DAL\Core\NHibernate\Repository.cs:line 115
+   at Jumbleblocks.DAL.Blog.BlogPostRepository.GetPosts(Int32 numberToSkip, Int32 numberToTake, IEnumerable`1 tags) in C:\GIT Repositories\Jumbleblocks-website\DAL\Blog\DAL.Blog\BlogPostRepository.cs:line 44
+   at Jumbleblocks.Domain.Blog.Paging.BlogPostPager.FetchForPage(Int32 pageNumber, IEnumerable`1 tags) in C:\GIT Repositories\Jumbleblocks-website\Domain\Blog\Domain.Blog\Paging\BlogPostPager.cs:line 62
+   at Jumbleblocks.Website.Controllers.Blog.BlogPostController.Index(Int32 page, String tags) in C:\GIT Repositories\Jumbleblocks-website\Application\Website\Jumbleblocks.Website\Controllers\Blog\BlogPostController.cs:line 115
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass15.<InvokeActionMethodWithFilters>b__12()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodFilter(IActionFilter filter, ActionExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass15.<>c__DisplayClass17.<InvokeActionMethodWithFilters>b__14()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName)
+2012-08-04 16:15:48,342 [5] ERROR Temp_Logger [(null)] - Error caught by global handler
+NHibernate.Exceptions.GenericADOException: could not execute query
+[ /* criteria query */ SELECT this_.Id as Id0_0_, this_.Title as Title0_0_, this_.ImageReferenceId as ImageRef5_0_0_, this_.PublishedDate as Publishe6_0_0_, this_.AuthorId as AuthorId0_0_, this_.SeriesId as SeriesId0_0_, this_.DeletedByUserId as DeletedB9_0_0_, this_.DeletedDate as Deleted10_0_0_ FROM BlogPosts this_ WHERE this_.DeletedDate is null and this_.DeletedByUserId is null ORDER BY this_.PublishedDate desc ]
+[SQL: /* criteria query */ SELECT this_.Id as Id0_0_, this_.Title as Title0_0_, this_.ImageReferenceId as ImageRef5_0_0_, this_.PublishedDate as Publishe6_0_0_, this_.AuthorId as AuthorId0_0_, this_.SeriesId as SeriesId0_0_, this_.DeletedByUserId as DeletedB9_0_0_, this_.DeletedDate as Deleted10_0_0_ FROM BlogPosts this_ WHERE this_.DeletedDate is null and this_.DeletedByUserId is null ORDER BY this_.PublishedDate desc] ---> System.NotSupportedException: The query should start with 'SELECT' or 'SELECT DISTINCT'
+   at NHibernate.Dialect.MsSql2005DialectQueryPager.GetAfterSelectInsertPoint()
+   at NHibernate.Dialect.MsSql2005DialectQueryPager.PageByLimitOnly(SqlString limit)
+   at NHibernate.Dialect.MsSql2005DialectQueryPager.PageBy(SqlString offset, SqlString limit)
+   at NHibernate.Dialect.MsSql2005Dialect.GetLimitString(SqlString queryString, SqlString offset, SqlString limit)
+   at NHibernate.Dialect.Dialect.GetLimitString(SqlString queryString, Nullable`1 offset, Nullable`1 limit, Parameter offsetParameter, Parameter limitParameter)
+   at NHibernate.Loader.Loader.AddLimitsParametersIfNeeded(SqlString sqlString, ICollection`1 parameterSpecs, QueryParameters queryParameters, ISessionImplementor session)
+   at NHibernate.Loader.Loader.CreateSqlCommand(QueryParameters queryParameters, ISessionImplementor session)
+   at NHibernate.Loader.Loader.PrepareQueryCommand(QueryParameters queryParameters, Boolean scroll, ISessionImplementor session)
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- End of inner exception stack trace ---
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   at NHibernate.Loader.Criteria.CriteriaLoader.List(ISessionImplementor session)
+   at NHibernate.Impl.SessionImpl.List(CriteriaImpl criteria, IList results)
+   at NHibernate.Impl.CriteriaImpl.List(IList results)
+   at NHibernate.Impl.CriteriaImpl.List[T]()
+   at NHibernate.Criterion.QueryOver`1.List()
+   at NHibernate.Criterion.QueryOver`1.NHibernate.IQueryOver<TRoot>.List()
+   at Jumbleblocks.DAL.Blog.BlogPostRepository.<>c__DisplayClass1.<GetPosts>b__0() in C:\GIT Repositories\Jumbleblocks-website\DAL\Blog\DAL.Blog\BlogPostRepository.cs:line 44
+   at Jumbleblocks.nHibernate.TransactionHelpers.Transact[TResult](ISession session, Func`1 function) in C:\GIT Repositories\Jumbleblocks-website\DAL\Core\NHibernate\TransactionHelpers.cs:line 30
+   at Jumbleblocks.nHibernate.Repository`1.Transact[TResult](Func`1 function) in C:\GIT Repositories\Jumbleblocks-website\DAL\Core\NHibernate\Repository.cs:line 115
+   at Jumbleblocks.DAL.Blog.BlogPostRepository.GetPosts(Int32 numberToSkip, Int32 numberToTake, IEnumerable`1 tags) in C:\GIT Repositories\Jumbleblocks-website\DAL\Blog\DAL.Blog\BlogPostRepository.cs:line 44
+   at Jumbleblocks.Domain.Blog.Paging.BlogPostPager.FetchForPage(Int32 pageNumber, IEnumerable`1 tags) in C:\GIT Repositories\Jumbleblocks-website\Domain\Blog\Domain.Blog\Paging\BlogPostPager.cs:line 62
+   at Jumbleblocks.Website.Controllers.Blog.BlogPostController.Index(Int32 page, String tags) in C:\GIT Repositories\Jumbleblocks-website\Application\Website\Jumbleblocks.Website\Controllers\Blog\BlogPostController.cs:line 115
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass15.<InvokeActionMethodWithFilters>b__12()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodFilter(IActionFilter filter, ActionExecutingContext preContext, Func`1 continuation)
+   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass15.<>c__DisplayClass17.<InvokeActionMethodWithFilters>b__14()
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName)

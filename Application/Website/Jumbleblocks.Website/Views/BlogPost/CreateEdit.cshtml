@@ -46,6 +46,8 @@
 
 @using (Html.BeginForm("Save", "BlogPost"))
 {
+     @Html.AntiForgeryToken()
+
     <fieldset>
        @if (Model != null)
        {

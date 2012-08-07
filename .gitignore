@@ -5,3 +5,4 @@ obj
 # mstest test results
 TestResults
 /Application\Website\Jumbleblocks.Website\App_Data/Log.log
+/Application\Website\Jumbleblocks.Website/App_Data

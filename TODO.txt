@@ -1,7 +1,5 @@
 For after 29/07/2012
 
-
-Check it edit/create/delete post should have Validation Token
 Paging on BlogPost listing  (Admin)
 Way back from edit post to listing (Admin)
 Style front page better

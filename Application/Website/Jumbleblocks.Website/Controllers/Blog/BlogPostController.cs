@@ -261,6 +261,7 @@ namespace Jumbleblocks.Website.Controllers.Blog
             return View("CreateEdit");
         }
 
+        [ValidateAntiForgeryToken]
         [AuthorizeOperation("Delete Blog Post")]
         public ActionResult Delete(int blogPostId)
         {
@@ -285,6 +286,7 @@ namespace Jumbleblocks.Website.Controllers.Blog
     
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [AuthorizeOperation("Create Blog Post")]      
         public ActionResult Save(CreateEditModel viewModel)

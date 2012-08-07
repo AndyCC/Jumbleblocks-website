@@ -7,6 +7,16 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('a.submitForm').click(function () {
+            $(this).parents('form:first').submit();
+        });
+    });
+
+</script>
+
 <h2>All Published Articles</h2>
 
 @{
@@ -39,9 +49,22 @@
                <li class="articleListingCell">@actualModel.PublishedDate.ToString("dd/MM/yyyy")</li>
                <li class="articleListingCell">@actualModel.AuthorsName</li>
                @if (canEditPost) { <li class="articleListingCell">@Html.ActionLink("Edit", "Edit", new { blogPostId = actualModel.BlogPostId })</li>}
-               @if (canDeletePost) { <li class="articleListingCell">@Html.ActionLink("Delete", "Delete", new { blogPostId = actualModel.BlogPostId })</li>}
-           </ul>
-       }                                                                               
-   }
+               @if (canDeletePost)
+               {
+                  <li class="articleListingCell">
+                     @using(Html.BeginForm("Delete", "BlogPost"))
+                     {
+                         @Html.AntiForgeryToken()
+                         @Html.Hidden("blogPostId", actualModel.BlogPostId);
+                       
+                                                                           
+                         <a href="#" class="submitForm">Delete</a>                                                  
+                     <!--   <input class="linkButton" type="submit" value="delete" />  -->
+                     }
+                 </li>                   
+               }
+           </ul>                                                                               
+       }
+    }
    
 </div>
