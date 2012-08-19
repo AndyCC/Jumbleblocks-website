@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Domain.Security;
 
 namespace Tests.Jumbleblocks.Domain.Security
 {
-    [TestFixture]
+    [TestClass]
     public class RoleTests
     {
-        [Test]
+       [TestMethod]
         public void AddOperation_Add_Operation_To_List()
         {
             var operation = new Operation { Name = "Operation" };
@@ -21,7 +21,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             role.Operations.ShouldContain(operation);
         }
 
-        [Test]
+       [TestMethod]
         public void AddOperation_GIVEN_Operation_Already_Added_WHEN_Added_Again_THEN_Does_Not_Add_To_List_Again()
         {
             var operation = new Operation { Name = "Operation" };
@@ -34,7 +34,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             role.Operations.Count().ShouldEqual(1);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddOperation_WHEN_operation_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -44,7 +44,7 @@ namespace Tests.Jumbleblocks.Domain.Security
         }
 
 
-        [Test]
+       [TestMethod]
         public void HasOperation_GIVEN_User_Has_No_Operations_WHEN_OperationName_Is_ABC_THEN_Returns_False()
         {
             var role = new Role { Name = "Role" };
@@ -54,7 +54,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void HasOperation_GIVEN_User_Has_Operation_With_Name_ABC_WHEN_operationName_Is_ABC_THEN_Returns_True()
         {
             const string OperationName = "ABC";
@@ -68,7 +68,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeTrue();
         }
 
-        [Test]
+       [TestMethod]
         public void HasOperation_GIVEN_User_Has_Operation_With_Name_DEF_WHEN_operationName_Is_ABC_THEN_Returns_False()
         {
             var operation = new Operation { Name = "DEF" };
@@ -80,7 +80,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void NameEquals_GIVEN_Role_Name_Is_ABC_WHEN_roleName_Is_ABC_THEN_Returns_True()
         {
             const string RoleName = "ABC";
@@ -91,7 +91,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeTrue();
         }
 
-        [Test]
+       [TestMethod]
         public void NameEquals_GIVEN_Role_Name_Is_ABC_WHEN_roleName_Is_abc_THEN_Returns_False()
         {
             const string RoleName = "ABC";
@@ -104,7 +104,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void NameEquals_GIVEN_Role_Name_Is_ABC_WHEN_roleName_Is_DEF_THEN_Returns_False()
         {
             const string RoleName = "ABC";

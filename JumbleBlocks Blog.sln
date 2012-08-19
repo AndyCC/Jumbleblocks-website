@@ -1,21 +1,32 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{AA47035F-D362-4C0E-AE06-CCABACECD101}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{08CA5966-F969-410D-B81A-19A52C0D602A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.Core", "Infrastructure\Core\Jumbleblocks.Core\Jumbleblocks.Core.csproj", "{94650920-9708-4EBD-BCE7-435D8F68F2EA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.Testing", "Testing\Core\Jumbleblocks.Testing.csproj", "{B82137E9-E65A-449A-8BB4-4F058631FB56}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JumbleBlocks.Testing.Web", "Testing\Web\JumbleBlocks.Testing.Web.csproj", "{8774D759-CCBD-42CA-BE75-5BD33EEA12E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Access", "Data Access", "{1D81E502-97A3-4DC7-A53D-49D0F7AEFAF8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{23D8696C-ADF0-483C-BD1D-D223587E66DF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3CFDFAC8-F7C2-40E1-B976-79E9E1D21552}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{1D12091E-45A1-462F-B58C-F6575543FC8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E2CC17D3-AF8B-47F7-9125-6072EECAE822}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2A52B27F-FE4C-4B6E-9820-60780EEB26C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{106A2760-84D7-408B-9304-0BDD779DC252}"
+	ProjectSection(SolutionItems) = preProject
+		TODO.txt = TODO.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.Core", "Infrastructure\Core\Jumbleblocks.Core\Jumbleblocks.Core.csproj", "{94650920-9708-4EBD-BCE7-435D8F68F2EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.Testing", "Testing\Core\Jumbleblocks.Testing.csproj", "{B82137E9-E65A-449A-8BB4-4F058631FB56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JumbleBlocks.Testing.Web", "Testing\Web\JumbleBlocks.Testing.Web.csproj", "{8774D759-CCBD-42CA-BE75-5BD33EEA12E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.Domain", "Domain\Core\Jumbleblocks.Domain\Jumbleblocks.Domain.csproj", "{9830CBF6-84C4-441E-A303-B036ABF74131}"
 EndProject
@@ -31,10 +42,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.Domain.Blog", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Jumbleblocks.Domain.Blog", "Domain\Blog\Tests.Domain.Blog\Tests.Jumbleblocks.Domain.Blog.csproj", "{AE7624E5-A7AE-4B7D-847C-CAECCFCB9C7F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{1D12091E-45A1-462F-B58C-F6575543FC8F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E2CC17D3-AF8B-47F7-9125-6072EECAE822}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.Website", "Application\Website\Jumbleblocks.Website\Jumbleblocks.Website.csproj", "{EA1D0686-A7FF-4AFB-81FA-7999D09FEA03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.nHibernate", "DAL\Core\NHibernate\Jumbleblocks.nHibernate.csproj", "{D97BD4E3-9E88-40BE-B3C1-5A0547D24760}"
@@ -43,18 +50,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.DAL.Security",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.DAL.Blog", "DAL\Blog\DAL.Blog\Jumbleblocks.DAL.Blog.csproj", "{86C898EA-9A2F-4947-9ED7-F40FE129A284}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2A52B27F-FE4C-4B6E-9820-60780EEB26C6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Jumbleblocks.Web.Wane", "Infrastructure\Web\Wane\Tests.Jumbleblocks.Web.Wane\Tests.Jumbleblocks.Web.Wane.csproj", "{35C3A15A-A05D-4CDD-9503-62CF6E678DDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumbleblocks.Web.Wane", "Infrastructure\Web\Wane\Jumbleblocks.Web.Wane\Jumbleblocks.Web.Wane.csproj", "{C002E370-67AA-48B7-B916-43CAE1BE47E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Jumbleblocks.Website", "Application\Website\Tests.Jumbleblocks.Website\Tests.Jumbleblocks.Website.csproj", "{04E97AAA-D913-4704-9616-EACC578FDDE6}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{106A2760-84D7-408B-9304-0BDD779DC252}"
-	ProjectSection(SolutionItems) = preProject
-		TODO.txt = TODO.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,10 +135,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{2A52B27F-FE4C-4B6E-9820-60780EEB26C6} = {AA47035F-D362-4C0E-AE06-CCABACECD101}
 		{94650920-9708-4EBD-BCE7-435D8F68F2EA} = {AA47035F-D362-4C0E-AE06-CCABACECD101}
 		{4CC2C4ED-5F18-4F58-9953-92ECAC989422} = {AA47035F-D362-4C0E-AE06-CCABACECD101}
 		{3665D0CE-4706-41D8-AD06-73EF07E88AD0} = {AA47035F-D362-4C0E-AE06-CCABACECD101}
-		{2A52B27F-FE4C-4B6E-9820-60780EEB26C6} = {AA47035F-D362-4C0E-AE06-CCABACECD101}
 		{C002E370-67AA-48B7-B916-43CAE1BE47E4} = {AA47035F-D362-4C0E-AE06-CCABACECD101}
 		{B82137E9-E65A-449A-8BB4-4F058631FB56} = {08CA5966-F969-410D-B81A-19A52C0D602A}
 		{8774D759-CCBD-42CA-BE75-5BD33EEA12E2} = {08CA5966-F969-410D-B81A-19A52C0D602A}

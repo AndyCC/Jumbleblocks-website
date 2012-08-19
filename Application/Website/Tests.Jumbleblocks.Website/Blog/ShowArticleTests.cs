@@ -1,5 +1,5 @@
 ﻿using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Testing.Web;
 using Jumbleblocks.Core.Configuration;
@@ -21,10 +21,10 @@ namespace Tests.Jumbleblocks.Website.Blog
     /// <summary>
     /// Tests to do with show an Blog article
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class ShowArticleTests 
     {       
-        [Test]
+       [TestMethod]
         public void Show_Returns_View_Result()
         {
             var controller = MockCreators.CreateBlogPostController();  
@@ -33,7 +33,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ShouldBeInstanceOfType(typeof(ViewResult));
         }
 
-        [Test]
+       [TestMethod]
         public void Show_Returns_View_With_Name_FullBlogPost()
         {
             var controller = MockCreators.CreateBlogPostController(); 
@@ -43,7 +43,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((ViewResult)result).ViewName.ShouldEqual("FullBlogPost");
         }
 
-        [Test]
+       [TestMethod]
         public void Show_Returns_View_With_ViewModel_Type_ArticleViewModel()
         {
             var controller = MockCreators.CreateBlogPostController(); 
@@ -53,7 +53,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((ViewResult)result).Model.ShouldBeInstanceOfType(typeof(FullBlogPostModel), "View model is not correct type");
         }
 
-        [Test]
+       [TestMethod]
         public void Show_WHEN_Year_Is_2012_Month_Is_12_AND_Day_Is_12_And_Title_is_ABC_THEN_Calls_Repository_Load_Method_With_Those_Values()
         {
             const int cYear = 2012;
@@ -82,7 +82,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             calledWithTitle.ShouldEqual(cTitle);
         }
 
-        [Test]
+       [TestMethod]
         public void Show_GIVEN_Configuration_Returns_Jumbleblocks_For_Page_Title_WHEN_parameter_Title_Is_ABC_THEN_Sets_Title_To_Jumbleblocks_Colon_ABC()
         {
             const string configTitle = "Jumbleblocks";
@@ -104,7 +104,7 @@ namespace Tests.Jumbleblocks.Website.Blog
 
         }
 
-        [Test]
+       [TestMethod]
         public void WHEN_No_BlogPost_Returned_THEN_Returns_ViewName_BlogPostNotFound()
         {
             var mockedBlogPostRepository = MockCreators.CreateMockedBlogPostRepository();
@@ -119,7 +119,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((ViewResult)result).ViewName.ShouldEqual("BlogPostNotFound");
         }
 
-        [Test]
+       [TestMethod]
         public void Show_GIVEN_Configuration_Returns_Jumbleblocks_For_Page_Title_And_title_parameter_Is_ABC_WHEN_No_BlogPost_Returned_From_Repository_THEN_Returns_Title_Jumbleblocks_colon_ABC_Not_Found()
         {
             const string configTitle = "Jumbleblocks";
@@ -139,7 +139,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((string)result.ViewBag.Title).ShouldEqual(String.Format("{0} : {1} Not Found", configTitle, titleName));
         }
 
-        [Test]
+       [TestMethod]
         public void Show_WHEN_Title_On_BlogPost_Is_ABC_THEN_Sets_Title_On_ViewModel_To_ABC()
         {
             const string title = "ABC";
@@ -158,7 +158,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+       [TestMethod]
         public void Show_WHEN_FullArticle_On_BlogPost_Is_ABC_THEN_Sets_FullArticle_On_ViewModel_To_ABC()
         {
             const string title = "Test";
@@ -177,7 +177,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((FullBlogPostModel)result.Model).FullArticle.ShouldEqual(fullText);
         }
 
-        [Test]
+       [TestMethod]
         public void Show_WHEN_PublishedDate_On_BlogPost_Is_01_01_2012_THEN_Sets_PublishedDate_On_ViewModel_To_01_01_2012()
         {
             const string title = "Test";
@@ -197,7 +197,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((FullBlogPostModel)result.Model).PublishedDate.ShouldEqual(publishedDate);
         }
 
-        [Test]
+       [TestMethod]
         public void Show_WHEN_Authors_Name_On_BlogPost_Is_Jonny_English_THEN_Sets_Authors_Name_On_ViewModel_To_Jonny_English()
         {
             const string title = "Test";

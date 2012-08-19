@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Domain.Security;
 
 namespace Tests.Jumbleblocks.Domain.Security
 {
-    [TestFixture]
+    [TestClass]
     public class OperationTests
     {   
-        [Test]
+       [TestMethod]
         public void NameEquals_GIVEN_Operations_Name_Is_ABC_WHEN_operationName_Is_ABC_THEN_Returns_True()
         {
             const string operationName = "ABC";
@@ -23,7 +23,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeTrue();
         }
 
-        [Test]
+       [TestMethod]
         public void NameEquals_GIVEN_Operations_Name_Is_ABC_WHEN_operationName_Is_abc_THEN_Returns_False()
         {
             const string OperationName = "ABC";
@@ -36,7 +36,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void NameEquals_GIVEN_Operations_Name_Is_ABC_WHEN_operationName_Is_DEF_THEN_Returns_False()
         {
             const string OperationName = "ABC";

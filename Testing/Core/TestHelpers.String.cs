@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Jumbleblocks.Testing
 {
@@ -10,7 +10,8 @@ namespace Jumbleblocks.Testing
     {
         public static void ShouldNotBeNullOrEmpty(this string str, string message = "")
         {
-            Assert.IsNotNullOrEmpty(str, message);
+            Assert.IsNotNull(str, message);
+            Assert.AreNotEqual(str, String.Empty);
         }
 
         public static void ShouldEqual(this string str, string expected, StringComparison stringComparison, string message = "")

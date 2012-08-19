@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Domain.Blog.Paging;
 using Jumbleblocks.Domain.Blog;
@@ -11,24 +11,24 @@ using System.Linq.Expressions;
 
 namespace Tests.Jumbleblocks.Blog.Domain.Paging
 {
-    [TestFixture]
+    [TestClass]
     public class BlogPostPagerTests
     {
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Ctor_WHEN_postsPerPage_Is_0_THEN_Throws_ArgumentException()
         {
             new BlogPostPager(0, new Mock<IBlogPostRepository>().Object);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_WHEN_blogPostRepository_Is_Null_THEN_Throws_ArgumentNullException()
         {
             new BlogPostPager(1, null);
         }
 
-        [Test]
+       [TestMethod]
         public void Ctor_Sets_PostPerPage_Property_To_postsPerPage_parameter_AND_BlogPostRepository_Property_To_blogPostRepostitoryParameter()
         {
             const int PostsPerPage = 2;
@@ -59,7 +59,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             return mockedBlogPostRepository;
         }
 
-        [Test]
+       [TestMethod]
         public void PageCount_GIVEN_BlogPostRepository_Has_2_Posts_And_Posts_Per_Page_Is_1_THEN_Returns_2()
         {
             const int PostsPerPage = 1;
@@ -72,7 +72,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             pager.PageCount.ShouldEqual(2);
         }
 
-        [Test]
+       [TestMethod]
         public void PageCount_GIVEN_BlogPostRepository_Has_2_Posts_And_Posts_Per_Page_Is_2_THEN_Returns_1()
         {
             const int PostsPerPage = 2;
@@ -85,7 +85,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             pager.PageCount.ShouldEqual(1);
         }
 
-        [Test]
+       [TestMethod]
         public void PageCount_GIVEN_BlogPostRepository_Has_2_Posts_And_PostsPerPage_Is_3_THEN_Returns_2()
         {
             const int PostsPerPage = 2;
@@ -98,7 +98,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             pager.PageCount.ShouldEqual(2);
         }
 
-        [Test]
+       [TestMethod]
         public void FetchForPage_GIVEN_BlogPostRepository_Has_2_Posts_And_PostsPerPage_Is_1_WHEN_pageNumber_Is_1_THEN_Calls_BlogPostRepository_GetPosts_With_numberToSkip_As_0_numberToTake_As_1()
         {
             const int PostsPerPage = 1;
@@ -119,7 +119,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             mockedBlogPostRepository.Verify(verifiableAction, Times.Once());
         }
         
-        [Test]
+       [TestMethod]
         public void FetchForPage_GIVEN_BlogPostRepository_Has_2_Posts_And_PostsPerPage_Is_1_WHEN_pageNumber_Is_2_THEN_Calls_BlogPostRepository_GetPosts_With_numberToSkip_As_1_numberToTake_As_1()
         {
             const int PostsPerPage = 1;
@@ -140,7 +140,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             mockedBlogPostRepository.Verify(verifiableAction, Times.Once());
         }
 
-        [Test]
+       [TestMethod]
         public void FetchForPage_GIVEN_BlogPostRepository_Has_2_Posts_And_PostsPerPage_Is_1_WHEN_pageNumber_Is_3_THEN_Does_Not_Call_BlogPostRepository_GetPosts()
         {
             const int PostsPerPage = 1;
@@ -158,7 +158,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             mockedBlogPostRepository.Verify(verifiableAction, Times.Never());
         }
 
-        [Test]
+       [TestMethod]
         public void FetchForPage_GIVEN_BlogPostRepository_Has_2_Posts_And_PostsPerPage_Is_2_WHEN_pageNumber_Is_1_THEN_Calls_BlogPostRepository_GetPosts_With_numberToSkip_As_0_numberToTake_As_2()
         {
             const int PostsPerPage = 2;
@@ -179,7 +179,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             mockedBlogPostRepository.Verify(verifiableAction, Times.Once());
         }
 
-        [Test]
+       [TestMethod]
         public void FetchForPage_GIVEN_BlogPostRepository_Has_3_Posts_And_PostsPerPage_Is2_WHEN_pageNumber_Is_2_THEN_Calls_BlogPostRepository_GetPosts_With_numberToSkip_As_2_numberToTake_As_1()
         {
             const int PostsPerPage = 2;
@@ -200,7 +200,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             mockedBlogPostRepository.Verify(verifiableAction, Times.Once());
         }
 
-        [Test]
+       [TestMethod]
         public void FetchForPage_GIVEN_BlogPostRepository_Has_2_Posts_And_PostsPerPage_Is_1_WHEN_pageNumber_Is_1_THEN_Returns_1_BlogPost()
         {
             const int PostsPerPage = 1;
@@ -215,7 +215,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             posts.Count().ShouldEqual(PostsPerPage);
         }
 
-        [Test]
+       [TestMethod]
         public void FetchForPage_GIVEN_BlogPostRepository_Has_2_Posts_And_PostsPerPage_Is_2_WHEN_pageNumber_Is_1_THEN_Returns_2_BlogPost()
         {
             const int PostsPerPage = 2;
@@ -230,7 +230,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             posts.Count().ShouldEqual(PostsPerPage);
         }
 
-        [Test]
+       [TestMethod]
         public void FetchForPage_GIVEN_BlogPostRepository_Has_3_Posts_And_PostsPerPage_Is_2_WHEN_pageNumber_Is_2_THEN_Returns_1_BlogPost()
         {
             const int PostsPerPage = 2;
@@ -247,7 +247,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             posts.Count().ShouldEqual(ExpectedNumPosts);
         }
 
-        [Test]
+       [TestMethod]
         public void FetchForPage_WHEN_No_Tags_THEN_Calls_BlogPostRepository_GetPosts_With_EmptyList_Of_Tags()
         {
             IEnumerable<string> tagsPassedToPosts = new string[0];
@@ -262,7 +262,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Paging
             tagsPassedToPosts.Count().ShouldEqual(0);
         }
 
-        [Test]
+       [TestMethod]
         public void FetchForPage_WHEN_2_Tags_THEN_Calls_BlogPostRepository_GetPosts_With_List_Of_2_Tags()
         {
             IEnumerable<string> tagsPassedToPosts = new string[0];

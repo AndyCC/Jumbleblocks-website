@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Domain.Blog;
 
 namespace Tests.Jumbleblocks.Blog.Domain
 {
-    [TestFixture]
+    [TestClass]
     public class BlogUserTests 
     {
-        [Test]
+       [TestMethod]
         public void FullName_WHEN_Forenames_Is_Jonny_AND_Surname_English_THEN_Returns_Jonny_English()
         {
             var blogPostUser = new BlogUser

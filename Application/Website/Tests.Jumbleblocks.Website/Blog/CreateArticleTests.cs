@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Core.Configuration;
 using Jumbleblocks.Testing.Web;
 using Moq;
@@ -21,10 +21,10 @@ using Jumbleblocks.Core.Security;
 
 namespace Tests.Jumbleblocks.Website.Blog
 {
-    [TestFixture]
+    [TestClass]
     public class CreateArticleTests
     {
-        [Test]
+       [TestMethod]
         public void BlogPostController_CreateNew_Returns_ViewResult()
         {
             var controller = MockCreators.CreateBlogPostController();
@@ -33,7 +33,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ShouldBeInstanceOfType(typeof(ViewResult));
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_CreateNew_Returns_CreateEdit_ArticleView()
         {
             var controller = MockCreators.CreateBlogPostController();
@@ -42,7 +42,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ViewName.ShouldEqual("CreateEdit");
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_Returns_RedirectToRouteResult()
         {
             var model = new CreateEditModel()
@@ -61,7 +61,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ShouldBeInstanceOfType(typeof(RedirectToRouteResult));
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_Calls_Save_On_BlogPostRepository()
         {
             var mockedBlogPostRepository = MockCreators.CreateMockedBlogPostRepository();
@@ -84,7 +84,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             mockedBlogPostRepository.Verify(r => r.SaveOrUpdate(It.IsAny<BlogPost>()), Times.Once());
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_GIVEN_BlogPost_Has_Title_ABC_THEN_Saves_BlogPost_With_Title_ABC()
         {
             const string Title = "ABC";
@@ -113,7 +113,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedBlogPost.Title.ShouldEqual(Title);
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_GIVEN_BlogPost_Has_Description_ABC_THEN_Saves_BlogPost_With_Description_ABC()
         {
             const string Description = "ABC";
@@ -142,7 +142,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedBlogPost.Description.ShouldEqual(Description);
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_GIVEN_BlogPost_Has_FullArticle_ABC_THEN_Saves_BlogPost_With_FullArticle_ABC()
         {
             const string FullArticle = "ABC";
@@ -171,7 +171,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedBlogPost.FullArticle.ShouldEqual(FullArticle);
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_GIVEN_ImageId_Is_1_THEN_Calls_ILookupRepository_LoadForId_ImageReference_With_Id_1()
         {
             const int ImageId = 1;
@@ -196,7 +196,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             mockedLookupRepository.Verify(r => r.LoadForId<ImageReference>(ImageId), Times.Once());
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_GIVEN_ILookupRepository_LoadForId_ImageReference_Contains_Entry_For_Id_1_WHEN_ImageId_Is_1_THEN_Sets_The_ImageReference_On_The_BlogPost_To_That_Image()
         {
             const int ImageId = 1;
@@ -230,7 +230,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedBlogPost.ImageReference.ShouldEqual(imageReference);
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_ImageId_Is_Less_Than_1_THEN_Sets_ImageId_To_1()
         {
             const int ExpectedImageId = 1;
@@ -255,7 +255,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             mockedLookupRepository.Verify(r => r.LoadForId<ImageReference>(ExpectedImageId), Times.Once());
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_ILookupRepository_LoadForId_ImageReference_Throws_Exception_THEN_Returns_CreateEdit_View()
         {
             var mockedLookupRepository = MockCreators.CreateMockedLookupRepository();
@@ -282,7 +282,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_ILookupRepository_LoadForId_ImageReference_Throws_Exception_THEN_Returns_ErrorMessage_On_ViewBag()
         {
             var mockedLookupRepository = MockCreators.CreateMockedLookupRepository();
@@ -311,7 +311,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             errorMessage.ShouldEqual("Exception occured while saving blog post. Please try again.");
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_BlogPostRepository_Throws_Exception_THEN_Returns_CreateEdit_View()
         {
             const int ImageId = 1;
@@ -341,7 +341,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ViewName.ShouldEqual("CreateEdit");
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_BlogPostRepository_Throws_Exception_THEN_Returns_ErrorMessage_On_ViewBag()
         {
             const int ImageId = 1;
@@ -374,7 +374,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             errorMessage.ShouldEqual("Exception occured while saving blog post. Please try again.");
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_No_Tags_THEN_Saves_No_Tags()
         {
             const int ImageId = 1;
@@ -408,7 +408,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_GIVEN_TagRepository_Has_Tag_ABC_WHEN_Tag_ABC_THEN_Loads_ABC_Tag_From_TagRepository_AND_Adds_To_BlogPost()
         {
             const int ImageId = 1;
@@ -443,7 +443,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedPost.Tags.First().ShouldEqual(tag);
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_GIVEN_TagRepository_Does_Not_Have_Tag_ABC_WHEN_Tag_ABC__WHEN_Tag_ABC_THEN_Creates_New_Tag_ABC_AND_Adds_To_BlogPost()
         {
             const int ImageId = 1;
@@ -479,7 +479,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedPost.Tags.First().Text.ShouldEqual(tag.Text);
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_viewModel_Has_Two_Tags_Seperated_By_SemiColon_THEN_Adds_Both_To_Saved_BlogPost()
         {
             const string Tag1Text = "tag1";
@@ -518,7 +518,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedPost.Tags.ShouldContain( t => t.Text == Tag2Text, String.Format("Does not contain {0}", Tag2Text));
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_TagTexts_Is_Null_THEN_Still_Saves_BlogPost()
         {
             const int ImageId = 1;
@@ -550,7 +550,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedPost.ShouldNotBeNull();
         }
                 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_No_Series_THEN_Series_On_Saved_Object_Is_Null()
         {
             const int ImageId = 1;
@@ -583,7 +583,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_GIVEN_SeriesRepository_Has_Series_ABC_WHEN_Series_ABC_THEN_Loads_ABC_Series_From_SeriesRepository_AND_Adds_To_BlogPost()
         {
             const int ImageId = 1;
@@ -618,7 +618,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedPost.Series.ShouldEqual(series);
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_Series_Is_Null_THEN_Does_Not_Call_SeriesRepository_LoadForName()
         {
             var mockedLookupRepository = MockCreators.CreateMockedLookupRepository();
@@ -643,7 +643,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             mockedLookupRepository.Verify(verifiableMethod, Times.Never());
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_Series_Is_EmptyString_THEN_Does_Not_Call_SeriesRepository_LoadForName()
         {
             var mockedLookupRepository = MockCreators.CreateMockedLookupRepository();
@@ -668,7 +668,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             mockedLookupRepository.Verify(verifiableMethod, Times.Never());
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_GIVEN_SeriesRepository_Does_Not_Have_Series_ABC_WHEN_Series_Is_ABC__THEN_Creates_New_Series_ABC_AND_Adds_To_BlogPost()
         {      
             const string SeriesName = "ABC";
@@ -699,7 +699,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedPost.Series.Name.ShouldEqual(SeriesName);
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_GIVEN_LoggedIn_User_Has_Id_1_WHEN_UserRepository_Has_User_With_Id_1_THEN_Sets_Author_On_BlogPost_To_That_User()
         {
             const int UserId = 1;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Testing.Web;
 using Tests.Jumbleblocks.Website.Helpers;
@@ -14,28 +14,28 @@ using Jumbleblocks.Website.Models.BlogPost;
 
 namespace Tests.Jumbleblocks.Website.Blog
 {
-    [TestFixture]
+    [TestClass]
     public class DeleteArticleTests
     {
-       
-        [Test]
+
+        [TestMethod]
         public void Delete_GIVEN_BlogPostRepository_Has_BlogPost_With_Id_1_WHEN_blogPostId_Parameter_Is_1_THEN_Saves_BlogPost_With_DeletedDate_Set()
         {
             const int BlogPostId = 1;
 
             BlogPost savedBlogPost = null;
 
-            var blogPost = new BlogPost("test","test", "test", new ImageReference(1, "/noimage.jpg"), DateTime.Now, new BlogUser());
+            var blogPost = new BlogPost("test", "test", "test", new ImageReference(1, "/noimage.jpg"), DateTime.Now, new BlogUser());
             blogPost.SetProperty(bp => bp.Id, BlogPostId);
-            
+
             var mockedBlogPostRepository = new Mock<IBlogPostRepository>();
-            mockedBlogPostRepository.Setup(r => r.Load(BlogPostId)).Returns(blogPost);
+            mockedBlogPostRepository.Setup(r => r.LoadFullArticle(BlogPostId)).Returns(blogPost);
             mockedBlogPostRepository.Setup(r => r.SaveOrUpdate(It.IsAny<BlogPost>())).Callback<BlogPost>(bp => savedBlogPost = bp);
 
             var mockedLookupRepository = MockCreators.CreateMockedLookupRepository();
-            Mock<IJumbleblocksPrincipal> mockedPrincipal =  MockCreators.CreateMockedPrincipalAndAddBlogUserToLookUp(mockedLookupRepository,1);
-            
-            var controller = MockCreators.CreateBlogPostController(blogPostRepository: mockedBlogPostRepository.Object, lookupRepository:mockedLookupRepository.Object);
+            Mock<IJumbleblocksPrincipal> mockedPrincipal = MockCreators.CreateMockedPrincipalAndAddBlogUserToLookUp(mockedLookupRepository, 1);
+
+            var controller = MockCreators.CreateBlogPostController(blogPostRepository: mockedBlogPostRepository.Object, lookupRepository: mockedLookupRepository.Object);
             controller.SetPrincipal(mockedPrincipal.Object);
 
             controller.Delete(BlogPostId);
@@ -44,7 +44,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedBlogPost.DeletedDate.ShouldBeWithinLast(new TimeSpan(0, 0, 1));
         }
 
-        [Test]
+        [TestMethod]
         public void Delete_GIVEN_BlogPostRepository_Has_BlogPost_With_Id_1_WHEN_blogPostId_Parameter_Is_1_And_User_Is_Logged_In_THEN_Saves_BlogPost_With_DeletedByUser_Set_To_Logged_In_User()
         {
             const int UserId = 1;
@@ -56,7 +56,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             blogPost.SetProperty(bp => bp.Id, BlogPostId);
 
             var mockedBlogPostRepository = new Mock<IBlogPostRepository>();
-            mockedBlogPostRepository.Setup(r => r.Load(BlogPostId)).Returns(blogPost);
+            mockedBlogPostRepository.Setup(r => r.LoadFullArticle(BlogPostId)).Returns(blogPost);
             mockedBlogPostRepository.Setup(r => r.SaveOrUpdate(It.IsAny<BlogPost>())).Callback<BlogPost>(bp => savedBlogPost = bp);
 
             var mockedLookupRepository = MockCreators.CreateMockedLookupRepository();
@@ -72,7 +72,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+        [TestMethod]
         public void Delete_GIVEN_BlogPostRepository_Has_BlogPost_With_Id_1_WHEN_blogPostId_Parameter_Is_1_THEN_Returns_DeletedModel()
         {
             const int UserId = 1;
@@ -84,7 +84,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             blogPost.SetProperty(bp => bp.Id, BlogPostId);
 
             var mockedBlogPostRepository = new Mock<IBlogPostRepository>();
-            mockedBlogPostRepository.Setup(r => r.Load(BlogPostId)).Returns(blogPost);
+            mockedBlogPostRepository.Setup(r => r.LoadFullArticle(BlogPostId)).Returns(blogPost);
             mockedBlogPostRepository.Setup(r => r.SaveOrUpdate(It.IsAny<BlogPost>())).Callback<BlogPost>(bp => savedBlogPost = bp);
 
             var mockedLookupRepository = MockCreators.CreateMockedLookupRepository();
@@ -104,7 +104,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+        [TestMethod]
         public void Delete_GIVEN_BlogPostRepository_Has_BlogPost_With_Id_1_WHEN_blogPostId_Parameter_Is_1_THEN_Returns_Deleted_View()
         {
             const int UserId = 1;
@@ -116,7 +116,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             blogPost.SetProperty(bp => bp.Id, BlogPostId);
 
             var mockedBlogPostRepository = new Mock<IBlogPostRepository>();
-            mockedBlogPostRepository.Setup(r => r.Load(BlogPostId)).Returns(blogPost);
+            mockedBlogPostRepository.Setup(r => r.LoadFullArticle(BlogPostId)).Returns(blogPost);
             mockedBlogPostRepository.Setup(r => r.SaveOrUpdate(It.IsAny<BlogPost>())).Callback<BlogPost>(bp => savedBlogPost = bp);
 
             var mockedLookupRepository = MockCreators.CreateMockedLookupRepository();
@@ -131,7 +131,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((ViewResult)result).ViewName.ShouldEqual("Deleted");
         }
 
-        [Test]
+        [TestMethod]
         public void Delete_GIVEN_BlogPostRepository_Does_Not_Have_BlogPost_With_Id_1_WHEN_blogPostId_Parameter_Is_1_THEN_Does_Not_Call_Save_On_BlogPostRepository()
         {
             const int UserId = 1;
@@ -154,7 +154,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+        [TestMethod]
         public void Delete_GIVEN_BlogPostRepository_Does_Not_Have_BlogPost_With_Id_1_WHEN_blogPostId_Parameter_Is_1_THEN_Returns_To_Referer()
         {
             const int UserId = 1;

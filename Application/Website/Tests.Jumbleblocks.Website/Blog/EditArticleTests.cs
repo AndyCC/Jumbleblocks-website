@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Testing.Web;
 using Moq;
@@ -22,10 +22,10 @@ using Jumbleblocks.Website.Models.BlogPost;
 
 namespace Tests.Jumbleblocks.Website.Blog
 {
-    [TestFixture]
+    [TestClass]
     public class EditArticleTests
     {
-        [Test]
+       [TestMethod]
         public void BlogPostController_Edit_Returns_ViewResult()
         {
             const int BlogPostId = 1;
@@ -50,7 +50,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ShouldBeInstanceOfType(typeof(ViewResult));
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Edit_Returns_View_Named_CreateEdit()
         {
             const int BlogPostId = 1;
@@ -73,7 +73,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ViewName.ShouldEqual("CreateEdit");
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Edit_GIVEN_BlogPostRepository_Contains_BlogPost_With_ID_1_WHEN_blogPostId_Is_1_THEN_Returns_ViewModel_For_BlogPost()
         {
             const int BlogPostId = 1;
@@ -106,7 +106,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             model.SeriesName.ShouldEqual(blogPost.Series.Name);
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_Save_WHEN_viewModel_Has_Id_THEN_Loads_Existing_Article_From_BlogPostRepository_Updates_And_Saves()
         {
             const int BlogPostId = 1;

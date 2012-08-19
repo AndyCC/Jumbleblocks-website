@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Domain.Blog;
 using Moq;
@@ -11,7 +11,7 @@ using Jumbleblocks.Domain;
 
 namespace Tests.Jumbleblocks.Blog.Domain.Deletion
 {
-    [TestFixture]
+    [TestClass]
     public class BlogPostDeleterTests
     {
         protected static ImageReference GetImageReference(int id = 1, string url = "http://www.jumbleblocks.co.uk/noimage.jpg")
@@ -19,7 +19,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Deletion
             return new ImageReference(id, url);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_WHEN_blogPostRepository_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -29,7 +29,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Deletion
         }
 
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_WHEN_lookupRepository_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -39,7 +39,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Deletion
         }
         
 
-        [Test]
+       [TestMethod]
         public void Ctor_SetsAND_BlogPostRepository_Property_To_blogPostRepository_Parameter_LookupRepository_Property_To_lookupRepository_Parameter_()
         {
             var mockedBlogPostRepository = new Mock<IBlogPostRepository>();
@@ -51,7 +51,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Deletion
             blogPostDeleter.LookupRepository.ShouldEqual(mockedLookupRepository.Object);
         }
 
-        [Test]
+       [TestMethod]
         public void MarkAsDeleted_GIVEN_Author_With_Id_1_Exists_In_AuthorRepository_WHEN_userId_Is_1_THEN_Saves_BlogPost_With_DeletedByUser_As_Author_With_Id_1()
         {
             const int UserId = 1;
@@ -77,7 +77,7 @@ namespace Tests.Jumbleblocks.Blog.Domain.Deletion
             savedBlogPost.DeletedByUser.ShouldEqual(deletionUser);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(UnknownUserException))]
         public void MarkAsDeleted_GIVEN_AuthorRepository_Has_No_Users_WHEN_userId_Is_1_THEN_Throws_UnknownUserException()
         {

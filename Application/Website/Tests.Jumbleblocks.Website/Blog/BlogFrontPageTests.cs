@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Testing.Web;
 using System.Web;
@@ -22,17 +22,17 @@ namespace Tests.Jumbleblocks.Website.Blog
     /// <summary>
     /// Tests for retrieving Blog posts
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class BlogFrontPageTests
     {
-        [Test]
+       [TestMethod]
         public void Index_Returns_ViewResult()
         {
             var controller = MockCreators.CreateBlogPostController();
             controller.Index().ShouldBeInstanceOfType(typeof(ViewResult), "Normal requests should return ViewResult");           
         }
 
-        [Test]
+       [TestMethod]
         public void Index_Returns_View_Named_FrontPage()
         {
             var controller = MockCreators.CreateBlogPostController();
@@ -41,7 +41,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ViewName.ShouldEqual("FrontPage");
         }
 
-        [Test]
+       [TestMethod]
         public void Index_ViewBag_Title_Property_Is_Jumbleblocks()
         {            
             const string title = "Jumbleblocks";
@@ -54,7 +54,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((string)result.ViewBag.Title).ShouldEqual(title);
         }
         
-        [Test]
+       [TestMethod]
         public void Index_Returns_BlogViewModel()
         {
             var controller = MockCreators.CreateBlogPostController();
@@ -63,7 +63,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.Model.ShouldBeInstanceOfType(typeof(FrontPageModel));
         }
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_BlogPostRepository_Has_1_BlogSummary_THEN_Returns_BlogViewModel_Containing_1_Item()
         {
             var blogPosts = new BlogPost[]{  new BlogPost("test", "test", "test", new ImageReference(1, "/noimage.jpg"), DateTime.Now, new BlogUser()) };
@@ -79,7 +79,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((FrontPageModel)result.Model).Summaries.Count().ShouldEqual(1);
         }
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_BlogPostRepository_Has_2_BlogSummary_THEN_Returns_BlogViewModel_Containing_2_Items()
         {
             var blogPosts = new BlogPost[]
@@ -99,7 +99,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((FrontPageModel)result.Model).Summaries.Count().ShouldEqual(2);
         }
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_BlogPostRepository_Has_1_BlogSummary_THEN_Sets_BlogSummaryViewModel_To_Have_Same_Values()
         {
             const string title = "Title";
@@ -130,7 +130,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             model.Summaries.First().AuthorsName.ShouldEqual(author.FullName);
         }
         
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_Configuration_Has_PostsPerPage_Set_To_1_And_NoPage_Specified_THEN_Calls_Repository_GetSummaries_With_numberToSkip_0_AND_Count_1()
         {
             const int returnCount = 1;    
@@ -158,7 +158,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_Configuration_Has_PostsPerPage_Set_To_1_And_Page_Is_1_THEN_Calls_Repository_GetSummaries_With_numberToSkip_0_AND_Count_1()
         {            
             const int returnCount = 1;
@@ -185,7 +185,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             countAskedFor.ShouldEqual(returnCount, "count passed through to repository is incorrect");
         }
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_Configuration_Has_Summaries_Per_Page_Set_To_1_And_Page_Is_2_THEN_Calls_Repository_GetSummaries_With_numberToSkip_1_AND_Count_1()
         {
             const int returnCount = 1;
@@ -213,7 +213,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             countAskedFor.ShouldEqual(returnCount, "count passed through to repository is incorrect");
         }
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_Configuration_Has_PostsPerPage_Set_To_1_And_Page_Is_3_THEN_Calls_Repository_GetSummaries_With_numberToSkip_2_AND_Count_1()
         {
             const int returnCount = 1;
@@ -241,7 +241,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             countAskedFor.ShouldEqual(returnCount, "count passed through to repository is incorrect");
         }
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_Configuration_Has_PostsPerPage_Set_To_10_AND_Repository_BlogPostCount_Returns_20_THEN_Returns_2_PageLinks()
         {
             var mockedBlogPostRepository = MockCreators.CreateMockedBlogPostRepository(blogPostCount: 20);
@@ -257,7 +257,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_Configuration_Has_PostsPerPage_Set_To_12_AND_Repository_BlogPostCount_Returns_20_THEN_Returns_2_PageLinks()
         {
             var mockedBlogPostRepository = MockCreators.CreateMockedBlogPostRepository(blogPostCount: 20);
@@ -272,7 +272,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_Configuration_Has_PostsPerPage_Set_To_5_AND_Repository_BlogPostCount_Returns_20_THEN_Returns_4_PageLinks()
         {
             var mockedBlogPostRepository = MockCreators.CreateMockedBlogPostRepository(blogPostCount: 20);
@@ -286,7 +286,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((FrontPageModel)result.Model).Paging.PageCount.ShouldEqual(4);
         }
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_Configuration_Has_PostsPerPage_Set_To_10_AND_Repository_BlogPostCount_Returns_20_WHEN_THEN_page_is_1_THEN_Returns_CurrentPage_As_1()
         {          
             const int page = 1;
@@ -302,7 +302,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((FrontPageModel)result.Model).Paging.CurrentPage.ShouldEqual(page);
         }
 
-        [Test]
+       [TestMethod]
         public void Index_GIVEN_Configuration_Has_PostsPerPage_Set_To_10_AND_Repository_BlogPostCount_Returns_20_WHEN_THEN_page_is_2_THEN_Returns_CurrentPage_As_2()
         {
             const int page = 2;
@@ -318,7 +318,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((FrontPageModel)result.Model).Paging.CurrentPage.ShouldEqual(page);
         }
 
-        [Test]
+       [TestMethod]
         public void Index_WHEN_No_Tags_THEN_Calls_GetSummaries_With_Empty_List()
         {
             IEnumerable<string> tagsEvaluated = null;
@@ -338,7 +338,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             tagsEvaluated.Count().ShouldEqual(0);
         }
 
-        [Test]
+       [TestMethod]
         public void Index_WHEN_Tag_A_THEN_Calls_GetSummaries_Tag_Of_A()
         {
             const string FirstTag = "A"; 
@@ -359,7 +359,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             tagsEvaluated.First().ShouldEqual(FirstTag);
         }
 
-        [Test]
+       [TestMethod]
         public void Index_WHEN_Tags_A_B_THEN_Calls_GetSummaries_Tag_Of_A_And_B()
         {
             const string FirstTag = "A";
@@ -382,7 +382,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             tagsEvaluated.Last().ShouldEqual(SecondTag);
         }
 
-        [Test]
+       [TestMethod]
         public void Index_Passes_Description_To_WaneTextTransformer()
         {
             var mockBlogPostRepository = MockCreators.CreateMockedBlogPostRepository(blogPostCount: 1);

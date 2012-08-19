@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Jumbleblocks.Testing
 {
@@ -10,7 +10,7 @@ namespace Jumbleblocks.Testing
     {
         public static void ShouldBeInstanceOfType<T>(this T obj, Type expectedType, string message = "")
         {
-            Assert.IsInstanceOf(expectedType, obj, message);
+            Assert.IsInstanceOfType(obj, expectedType, message);
         }
 
         public static void ShouldEqual<T>(this T obj, T expected, string message = "")

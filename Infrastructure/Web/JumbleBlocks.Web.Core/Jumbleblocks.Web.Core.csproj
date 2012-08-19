@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\..\resources\Castle.Core.dll</HintPath>
+      <HintPath>..\..\..\Libraries\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\..\resources\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\..\Libraries\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web" />

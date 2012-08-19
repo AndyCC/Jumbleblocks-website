@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Web.Core;
 using Jumbleblocks.Web.Security;
 using Castle.Windsor;
@@ -22,12 +22,12 @@ using Jumbleblocks.Website.Controllers.Blog;
 
 namespace Tests.Jumbleblocks.Website.Blog
 {
-    [TestFixture]
+    [TestClass]
     public class AuthenticationControllerTests
     {
         #region Login Form
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_WHEN_webAuthenticator_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -35,7 +35,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
         
 
-        [Test]
+       [TestMethod]
         public void Ctor_WHEN_webAuthenticator_Is_Not_Null_THEN_Sets_WebAuthenticator_Property()
         {
             var mockedWebAuthenticator = new Mock<IWebAuthenticator>();
@@ -47,7 +47,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             controller.WebAuthenticator.ShouldEqual(expectedWebAuthenticator);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_WHEN_configurationReader_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -55,7 +55,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         }
 
 
-        [Test]
+       [TestMethod]
         public void Ctor_WHEN_configurationReader_Is_Not_Null_THEN_Sets_ConfigurationReader_Property()
         {
             var mockedWebAuthenticator = new Mock<IWebAuthenticator>();
@@ -81,7 +81,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             return mockedPrincipal.Object;
         }
         
-        [Test]
+       [TestMethod]
         public void LoginForm_Returns_ViewResult()
         {
             var mockedWebAuthenticator = new Mock<IWebAuthenticator>();
@@ -99,7 +99,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ShouldBeInstanceOfType(typeof(ViewResult));
         }
 
-        [Test]
+       [TestMethod]
         public void LoginForm_Returns_Login_View_With_Login_ViewModel()
         {
             var mockedWebAuthenticator = new Mock<IWebAuthenticator>();
@@ -118,7 +118,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.Model.ShouldBeInstanceOfType(typeof(LoginViewModel));
         }
 
-        [Test]
+       [TestMethod]
         public void LoginForm_GIVEN_Username_ABC_Exists_In_Authorisation_Cookie_THEN_Returns_LoginView_With_Username_Filled_In()
         {
             const string username = "ABC";          
@@ -140,7 +140,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((LoginViewModel)result.Model).Username.ShouldEqual(username);
         }
 
-        [Test]
+       [TestMethod]
         public void LoginForm_GIVEN_No_Username_In_Authorisation_Cookie_THEN_Returns_LoginViewModel_With_Username_Set_As_Empty_String()
         {
             const string username = "";
@@ -162,7 +162,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((LoginViewModel)result.Model).Username.ShouldEqual(username);
         }
 
-        [Test]
+       [TestMethod]
         public void LoginForm_WHEN_RedirectUrl_PassedThrough_THEN_Sets_RedirectUrl_On_ViewModel()
         {
             const string url = "http://localhost/test.html";
@@ -193,7 +193,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((LoginViewModel)result.Model).RedirectUrl.ShouldEqual(url);
         }
 
-        [Test]
+       [TestMethod]
         public void LoginForm_GIVEN_Configuration_BlogConfigurationSection_Has_DefaultRedirectUrl_And_RedirectAcceptedHosts_Contains_localhost_WHEN_Redirect_Url_Is_For_A_Differnt_Web_Domain_THEN_Sets_RedirectUrl_To_DefaultRedirectUrl()
         {
             const string defaultRedirectUrl = "http://localhost/test.html";
@@ -223,7 +223,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((LoginViewModel)result.Model).RedirectUrl.ShouldEqual(defaultRedirectUrl);   
         }
 
-        [Test]
+       [TestMethod]
         public void LoginForm_GIVEN_No_redirectUrl_THEN_Sets_RedirectUrl_On_ViewModel_To_DefaultRedirectUrl_From_Config()
         {
             const string defaultRedirectUrl = "http://localhost/test.html";
@@ -249,7 +249,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             ((LoginViewModel)result.Model).RedirectUrl.ShouldEqual(defaultRedirectUrl); 
         }
 
-        [Test]
+       [TestMethod]
         public void LoginForm_GIVEN_redirectUrl_Starts_With_Slash_THEN_Adds_WigglyLine_To_Front_Of_Url_And_Returns_It_As_RedirectUrl()
         {
             const string url = "/admin";
@@ -294,7 +294,7 @@ namespace Tests.Jumbleblocks.Website.Blog
 
     
 
-        [Test]
+       [TestMethod]
         public void Login_Calls_WebAuthenticator_With_Provided_Username_And_Password()
         {
             var viewModel = new LoginViewModel
@@ -320,7 +320,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             mockedWebAuthenticator.Verify(verifiableAction, Times.Once());
         }
 
-        [Test]
+       [TestMethod]
         public void Login_WHEN_Username_Is_Empty_THEN_Returns_Login_View_With_ErrorMessage_On_Username()
         {
             var viewModel = new LoginViewModel
@@ -349,7 +349,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ViewData.ModelState.Values.First().Errors.First().ErrorMessage.ShouldEqual("Username required");
         }
 
-        [Test]
+       [TestMethod]
         public void Login_WHEN_Password_Is_Empty_THEN_Returns_Login_View_With_ErrorMessage_On_Password()
         {
             var viewModel = new LoginViewModel
@@ -379,7 +379,7 @@ namespace Tests.Jumbleblocks.Website.Blog
         } 
 
 
-        [Test]
+       [TestMethod]
         public void Login_WHEN_WebAuthenticator_Returns_Authenticated_User_THEN_Returns_RedirectUrl()
         {
             const string redirectUrl = "http://localhost/test.html";
@@ -407,7 +407,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.Url.ShouldEqual(redirectUrl);
         }
 
-        [Test]
+       [TestMethod]
         public void Login_GIVEN_RedirectUrl_Provided_Is_EmptyString_WHEN_WebAuthenticator_Returns_Authenticated_User_THEN_Returns_RedirectUrl_To_DefaultRedirectUrl()
         {
             const string redirectUrl = "http://localhost/testABC.html";
@@ -435,7 +435,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.Url.ShouldEqual(redirectUrl);
         }
 
-        [Test]
+       [TestMethod]
         public void Login_WHEN_WebAuthenticator_Authenticate_Returns_Principal_That_Is_Not_Authenticated_THEN_Returns_LoginView_With_ErrorMessage()
         {
             var viewModel = new LoginViewModel
@@ -470,7 +470,7 @@ namespace Tests.Jumbleblocks.Website.Blog
 
         #region Logout
 
-        [Test]
+       [TestMethod]
         public void Logout_Calls_Logout_On_WebAuthenticator()
         {
             var mockedWebAuthenticator = new Mock<IWebAuthenticator>();
@@ -487,7 +487,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             mockedWebAuthenticator.Verify(verifiableAction, Times.Once());
         }
 
-        [Test]
+       [TestMethod]
         public void Logout_GIVEN_BlogConfiguration_DefaultAction_Is_Index_And_Default_Controller_Is_Blog_THEN_Redirects_To_Index_On_Blog()
         {
             const string defaultController = "Blog";

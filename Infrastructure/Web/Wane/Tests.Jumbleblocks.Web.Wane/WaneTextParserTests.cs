@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Web.Wane;
 using Jumbleblocks.Web.Wane.ParseRules.Delimeters;
@@ -10,7 +10,7 @@ using Jumbleblocks.Web.Wane.ParseRules.Properties;
 
 namespace Tests.Jumbleblocks.Web.Wane
 {
-    [TestFixture]
+    [TestClass]
     public class WaneTextParserTests
     {
         private DelimeterSet GetDefaultDelimeterSetWithBold()
@@ -77,7 +77,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             }
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_Text_Bold_THEN_Returns_3_Tokens()
         {
             const string SomeText = "Some Text";
@@ -91,7 +91,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             tokens.Count().ShouldEqual(3, "Should be 3 Tokens");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_Text_Bold_THEN_First_Token_Returned_Should_Be_Bold()
         {
             const string SomeText = "Some Text";
@@ -107,7 +107,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             firstToken.Text.ShouldEqual(DefaultDelimeterValues.Bold, String.Format("Expected text '{0}'", DefaultDelimeterValues.Bold));
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_Text_Bold_THEN_Second_Token_Returned_Should_Be_Text()
         {
             const string SomeText = "Some Text";
@@ -124,7 +124,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             secondToken.Text.ShouldEqual(SomeText, String.Format("Expected text '{0}'", SomeText));
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_Text_Bold_THEN_Third_Token_Returned_Should_Be_Bold()
         {
             const string SomeText = "Some Text";
@@ -141,7 +141,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             LastToken.Text.ShouldEqual(DefaultDelimeterValues.Bold, String.Format("Expected text '{0}'", DefaultDelimeterValues.Bold));
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_PropertyStyleClass_Text_Bold_THEN_Returns_3_Tokens()
         {
             const string SomeText = "Some Text";
@@ -161,7 +161,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             tokens.Count().ShouldEqual(3, "Should be 3 Tokens");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_PropertyStyleClass_Text_Bold_THEN_First_Token_Is_Bold_And_Contains_StyleClass_Property_As_Specified()
         {
             const string SomeText = "Some Text";
@@ -187,7 +187,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             firstToken[PropertyName].ShouldEqual(PropertyValue, String.Format("Property With Name '{0}' does not have the correct value", PropertyName));
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_PropertyStyleClass_Text_Bold_THEN_Second_Token_Is_Text()
         {
             const string SomeText = "Some Text";
@@ -210,7 +210,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             secondToken.Text.ShouldEqual(SomeText, String.Format("Expected text '{0}'", SomeText));
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_PropertyStyleClass_Text_Bold_THEN_Third_Token_Is_Bold()
         {
             const string SomeText = "Some Text";
@@ -233,7 +233,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             LastToken.Text.ShouldEqual(DefaultDelimeterValues.Bold, String.Format("Expected text '{0}'", DefaultDelimeterValues.Bold));
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_Two_Properties_Text_Bold_THEN_Returns_3_Tokens()
         {
             const string SomeText = "Some Text";
@@ -258,7 +258,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             tokens.Count().ShouldEqual(3, "Incorrect number of tokens returned");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_Two_Properties_Text_Bold_THEN_First_Token_Contains_Two_Properties()
         {
             const string SomeText = "Some Text";
@@ -291,7 +291,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             firstToken[SecondPropertyName].ShouldEqual(SecondPropertyValue, String.Format("Property With Name '{0}' does not have the correct value", SecondPropertyName));
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_bold_text_bold_text_bold_text_bold_THEN_Returns_7_Tokens()
         {
             const string SomeText = "Some Text";
@@ -305,7 +305,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             tokens.Count().ShouldEqual(7, "Should be 7 Tokens");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_bold_with_properties_text_bold_text_bold_text_bold_THEN_Returns_7_Tokens()
         {
             const string SomeText = "Some Text";
@@ -325,7 +325,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             tokens.Count().ShouldEqual(7, "Should be 7 Tokens");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_bold_text_propertySyntax_bold_THEN_returns_3_Tokens()
         {             
             DelimeterSet delimeterSet = GetDefaultDelimeterSetWithBold();
@@ -341,7 +341,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             tokens.Count().ShouldEqual(3, "Should be 3 Tokens");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_bold_text_propertySyntax_bold_THEN_Second_Token_Is_Text_And_Contains_Text_Including_PropertySyntax()
         {
             DelimeterSet delimeterSet = GetDefaultDelimeterSetWithBold();
@@ -359,7 +359,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             secondToken.Text.ShouldEqual(someText, "Text token does not contain correct text");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_Which_Is_Property_Syntax_THEN_Returns_List_Of_1_Text_Token()
         {
             DelimeterSet delimeterSet = GetDefaultDelimeterSetWithBold();
@@ -375,7 +375,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             tokens.First().Text.ShouldEqual(waneText, "Text is not correct");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_Italic_Text_Italic_Bold_THEN_Returns_5_Tokens()
         {
             const string SomeText = "Some Text";
@@ -390,7 +390,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             tokens.Count().ShouldEqual(5, "Should be 5 Tokens");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_Italic_Text_Italic_Bold_THEN_Returns_Correct_Tokens_In_Correct_Order()
         {
             const string SomeText = "Some Text";
@@ -419,7 +419,7 @@ namespace Tests.Jumbleblocks.Web.Wane
         }
 
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_With_Properties_Italic_Text_Italic_Bold_THEN_Returns_5_Tokens_With_The_First_Bold_Token_Containing_Its_Properties()
         {
             const string SomeText = "Some Text";
@@ -447,7 +447,7 @@ namespace Tests.Jumbleblocks.Web.Wane
         }
 
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_waneText_Contains_Text_For_Bold_Italic_With_Properties_Text_Italic_Bold_THEN_Returns_5_Tokens_With_The_First_Italics_Token_Containing_Its_Properties()
         {
             const string SomeText = "Some Text";
@@ -474,7 +474,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             italicsToken[PropertyName].ShouldEqual(PropertyValue, String.Format("Property '{0}' has incorrect value", PropertyName));
         }
         
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_Text_THEN_Returns_2_Text_Tokens_With_Warning_On_Text_Token_Representing_Bold()
         {
             const string Text = "ABC";
@@ -498,7 +498,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             textToken.Text.ShouldEqual(Text, "Text token text is incorrect");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Escape_Bold_Text_Returns_One_Token_For_Text_Containing_BoldTokenText_And_Text()
         {
             const string Text = "ABC";
@@ -518,7 +518,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             token.Text.ShouldEqual(expectedText, "Text not as expected");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Escape_Bold_Text_Bold_Returns_Two_Tokens_Second_Token_For_Bold_Is_Text_With_Warning()
         {
             const string Text = "ABC";
@@ -543,7 +543,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             secondToken.Warnings.ShouldContain("Delimeter start does not have a matching end delimeter, or the actual start delimeter has been escaped");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_StartProperties_Text_Bold_THEN_Returns_3_Tokens_With_PropertiesStart_Part_Of_Text_Token_And_Warning_On_First_Bold()
         {
             const string Text = "ABC";
@@ -572,7 +572,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             thirdToken.Text.ShouldEqual(DefaultBoldDelimeterValue, "Text is not default bold delimeter");
         }
                 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_StartProperties_EndProperties_Text_Bold_THEN_Returns_3_Tokens_With_PropertiesStart_And_PropertiesEnd_Not_Included_In_Text_Token_And_Warning_On_First_Bold()
         {
             const string Text = "ABC";
@@ -600,7 +600,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             thirdToken.Text.ShouldEqual(DefaultBoldDelimeterValue, "Text is not default bold delimeter");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_StartProperties_PropertyName_EndProperties_Text_Bold_THEN_Returns_3_Tokens_With_PropertiesStart_And_PropertiesEnd_Not_Included_In_Text_Token_And_Warning_On_First_Bold()
         {
             const string Text = "ABC";
@@ -630,7 +630,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             thirdToken.Text.ShouldEqual(DefaultBoldDelimeterValue, "Text is not default bold delimeter");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_StartProperties_PropertyName_PropertyNameValueSeperator_EndProperties_Text_Bold_THEN_Returns_3_Tokens_With_PropertiesStart_And_PropertiesEnd_Not_Included_In_Text_Token_And_Warning_On_First_Bold()
         {
             const string Text = "ABC";
@@ -660,7 +660,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             thirdToken.Text.ShouldEqual(DefaultBoldDelimeterValue, "Text is not default bold delimeter");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_StartProperties_PropertyName_PropertyNameValueSeperator_PropertySeperator_PropertyName_EndProperties_Text_Bold_THEN_Returns_3_Tokens_With_Warning_On_First_Bold_And_Bold_Has_First_Property()
         {
             const string Text = "ABC";
@@ -697,7 +697,7 @@ namespace Tests.Jumbleblocks.Web.Wane
         }
 
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_StartProperties_PropertyName_PropertyNameValueSeperator_PropertySeperator_PropertyName_PropertyNameValueSeperator_PropeEndProperties_Text_Bold_THEN_Returns_3_Tokens_With_Warning_On_First_Bold_And_Bold_Has_First_Property()
         {
             const string Text = "ABC";
@@ -736,7 +736,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             thirdToken.Text.ShouldEqual(DefaultBoldDelimeterValue, "Text is not default bold delimeter");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_StartProperties_PropertyName_commer_PropertySeperator_PropertyName_PropertyNameValueSeperator_PropertyValue_EndProperties_Text_Bold_THEN_Returns_3_Tokens_With_One_Property_On_Bold()
         {
             const string Text = "ABC";
@@ -773,7 +773,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             thirdToken.Text.ShouldEqual(DefaultBoldDelimeterValue, "Text is not default bold delimeter");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_Escape_PropertyStart_PropertyName_PropertyNameValueSeperator_PropertyValue_EndProperties_Text_Bold_THEN_Returns_3_Tokens_With_Property_Declaration_In_Text()
         {
             const string Text = "ABC";
@@ -805,7 +805,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             thirdToken.Text.ShouldEqual(DefaultBoldDelimeterValue, "Text is not default bold delimeter");
         }
         
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_Text_Bold_Properties_THEN_Returns_3_Tokens_With_Warning_On_Second_Bold_And_Properties_And_Not_Made_Into_Text()
         {
             const string Text = "ABC";
@@ -839,7 +839,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             thirdToken.Warnings.ShouldContain("Can not put properties on closing delimeters.");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Escape_Escape_Bold_Text_Bold_THEN_Returns_Text_With_Escape_Character_Followed_By_Bold_Text_Bold()
         {
             DelimeterSet delimeterSet = GetDefaultDelimeterSetWithBold();
@@ -867,7 +867,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             fourthToken.Text.ShouldEqual(DefaultBoldDelimeterValue, "Text is not default bold delimeter");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_With_Two_Properties_With_Same_Name_But_Differnt_Values_Text_Bold_THEN_Returns_3_Tokens_With_Forst_Bold_Token_Having_1_Property_With_Last_Value_And_A_Warning()
         {
             const string PropertyName = "StyleClass";
@@ -893,7 +893,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             firstToken.Warnings.ShouldContain(String.Format("Property '{0}' assigned multiple values.", PropertyName));
         }
          
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_WHEN_waneText_Contains_Text_For_Bold_Text_Newline_Bold_THEN_Returns_4_Tokens_With_3rd_Token_Being_A_NewLine()
         {
             DelimeterSet delimeterSet = GetDefaultDelimeterSetWithBold();
@@ -908,7 +908,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             thirdToken.TokenType.ShouldEqual(TokenType.NewLine, "Is not a new line");
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_GIVEN_DelimeterSet_Has_Rule_For_Bold_And_No_PropertyParse_Rules_WHEN_Bold_Has_A_Property_THEN_Does_Not_Add_Property_To_Bold_But_Adds_Warning()
         {
             DelimeterSet delimeterSet = GetDefaultDelimeterSetWithBold();
@@ -928,7 +928,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             boldToken.Warnings.ShouldContain(String.Format("The property '{0}' is not allowed on this delimeter.", StyleClassParseRule.NameOfProperty));
         }
 
-        [Test]
+       [TestMethod]
         public void Parse_WHEN_Delimieter_Is_Escaped_Twice_THEN_Does_Not_Return_Escape_Character_In_Text()
         {
             DelimeterSet delimeterSet = GetDefaultDelimeterSetWithBold();

@@ -1,5 +1,5 @@
 ﻿using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Web.Wane;
 using Jumbleblocks.Web.Wane.ParseRules.Delimeters;
@@ -11,10 +11,10 @@ namespace Tests.Jumbleblocks.Web.Wane
     /// <summary>
     /// Set of tests for delimeter set
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class DelimeterSetTests
     {
-        [Test]
+        [TestMethod]
         public void IsValid_WHEN_EscapeDelimeter_Is_Null_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -28,7 +28,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_EscapeDelimeter_Is_EmptyString_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -42,7 +42,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_PropertiesStartDelimeter_Is_Null_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -56,7 +56,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_PropertiesStartDelimeter_Is_EmptyString_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -70,7 +70,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_PropertiesEndDelimeter_Is_Null_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -84,7 +84,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_PropertiesEndDelimeter_Is_EmptyString_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -98,7 +98,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_PropertySeperatorDelimeter_Is_Null_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -112,7 +112,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_PropertySeperatorDelimeter_Is_EmptyString_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -126,7 +126,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
         
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_PropertyNameValueSeperatorDelimeter_Is_Null_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -140,7 +140,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_PropertyNameValueSeperatorDelimeter_Is_EmptyString_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -154,7 +154,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_Does_Not_Contain_At_Least_1_Custom_Delimeter_THEN_Returns_False()
         {
             var set = new DelimeterSet();
@@ -167,7 +167,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsValid_WHEN_All_Properties_Set_And_One_Custom_Delimeter_THEN_Returns_True()
         {
             var set = new DelimeterSet();
@@ -181,7 +181,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.IsValid.ShouldBeTrue();
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddDelimeterParseRule_WHEN_delimeterParseRule_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -189,7 +189,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.AddDelimeterParseRule(null);
         }
 
-        [Test]
+       [TestMethod]
         public void AddDelimeterParseRule_WHEN_delimeterParseRule_Name_Is_Bold_Then_Adds_Bold_To_List_Of_Delimeters()
         {
             const string boldDelimeterName = "bold";
@@ -199,7 +199,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.HasDelimeterFor(boldDelimeterName).ShouldBeTrue();
         }
 
-        [Test]
+       [TestMethod]
         public void AddDelimeterParseRule_GIVEN_delimeterParseRule_Name_Is_Bold_WHEN_delimeterParseRule_Delimeter_Is_hashB_THEN_Indexer_For_Bold_Returns_hashB()
         {
             const string boldDelimeterName = "bold";
@@ -210,7 +210,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set[boldDelimeterName].ShouldEqual(delimeter);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void AddDelimeterParseRule_GIVEN_delimeterParseRule_Name_For_Bold_Already_Exists_WHEN_delimeterParseRule_Name_Is_Bold_THEN_Throws_InvalidOperationException()
         {
@@ -222,7 +222,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.AddDelimeterParseRule(new FakeParseRule(boldDelimeterName, "#i", "I"));
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void AddDelimeterParseRule_GIVEN_delimeterParseRule_Delimieter_For_hashB_Already_Exists_WHEN_delimeterParseRule_Delimeter_Is_hashb_THEN_Throws_InvalidOperationException()
         {
@@ -234,7 +234,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.AddDelimeterParseRule(new FakeParseRule("Something else", delimeter, "I"));
         }
 
-        [Test]
+       [TestMethod]
         public void AddGlobalPropertyParseRule_Adds_PropertyParseRule_To_GlobalList()
         {
             var propertyParseRule = new PropertyParseRule("StyleClass");
@@ -245,7 +245,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             set.GlobalPropertyParseRules.ShouldContain(propertyParseRule);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void AddGlobalParseRule_GIVEN_propertyParseRule_With_StyleClass_Already_Exists_WHEN_propertyParseRule_With_propertyParseName_Added_Again_THEN_Throws_InvalidOperationException()
         {

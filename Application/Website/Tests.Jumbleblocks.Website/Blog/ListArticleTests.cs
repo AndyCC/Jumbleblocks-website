@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Testing.Web;
 
@@ -19,10 +19,10 @@ using Jumbleblocks.Website.Models.BlogPost;
 
 namespace Tests.Jumbleblocks.Website.Blog
 {
-    [TestFixture]
+    [TestClass]
     public class ListArticleTests
     {
-        [Test]
+       [TestMethod]
         public void BlogPostController_List_Returns_ViewResult()
         {
             var controller = MockCreators.CreateBlogPostController();
@@ -32,7 +32,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ShouldBeInstanceOfType(typeof(ViewResult));
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_List_Returns_View_Named_BlogPostListing()
         {
             var controller = MockCreators.CreateBlogPostController();
@@ -43,7 +43,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ViewName.ShouldEqual("BlogPostListing");
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_List_GIVEN_BlogPost_Has_1_Item_THEN_Returns_1_ArticleListingViewModel()
         {
             var mockedBlogPostRepository = MockCreators.CreateMockedBlogPostRepository(blogPostCount: 1);
@@ -59,7 +59,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             viewModel.Count().ShouldEqual(1);            
         }
 
-        [Test]
+       [TestMethod]
         public void BlogPostController_List_GIVEN_BlogPost_Has_1_Item_THEN_Returns_1_ArticleListingViewModel_With_Data_From_Post()
         {
             const int BlogPostId = 1;

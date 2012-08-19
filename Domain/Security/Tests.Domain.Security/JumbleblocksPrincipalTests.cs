@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Domain.Security;
 using Moq;
@@ -10,10 +10,10 @@ using Jumbleblocks.Core.Security;
 
 namespace Tests.Jumbleblocks.Domain.Security
 {
-    [TestFixture]
+    [TestClass]
     public class JumbleblocksPrincipalTests
     {
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_WHEN_identity_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -21,7 +21,7 @@ namespace Tests.Jumbleblocks.Domain.Security
         }
 
 
-        [Test]
+       [TestMethod]
         public void Ctor_Sets_Identity_Property_To_identity()
         {
             var identity = new JumbleblocksAnonymousIdentity();
@@ -30,7 +30,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             principal.Identity.ShouldEqual(identity);
         }
 
-        [Test]
+       [TestMethod]
         public void IsInRole_Given_Ctor_user_Is_Null_THEN_Returns_False()
         {
             var principal = new JumbleblocksPrincipal(new JumbleblocksAnonymousIdentity(), null);
@@ -39,7 +39,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void IsInRole_GIVEN_Has_Role_ABC_WHEN_roleName_IS_ABC_THEN_Returns_True()
         {
             const string RoleName = "ABC";
@@ -56,7 +56,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeTrue();
         }
 
-        [Test]
+       [TestMethod]
         public void IsInRole_GIVEN_Has_Role_ABC_WHEN_roleName_IS_DEF_THEN_Returns_False()
         {
             const string RoleName = "ABC";
@@ -75,7 +75,7 @@ namespace Tests.Jumbleblocks.Domain.Security
         }
 
 
-        [Test]
+       [TestMethod]
         public void HasOperation_GIVEN_Ctor_user_Is_Null_THEN_Returns_False()
         {
             var principal = new JumbleblocksPrincipal(new JumbleblocksAnonymousIdentity(), null);
@@ -84,7 +84,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void HasOperation_GIVEN_Has_Operation_ABC_WHEN_operationName_IS_ABC_THEN_Returns_True()
         {
             const string OperationName = "ABC";
@@ -104,7 +104,7 @@ namespace Tests.Jumbleblocks.Domain.Security
         }
 
 
-        [Test]
+       [TestMethod]
         public void HasOperation_GIVEN_Has_Operation_ABC_WHEN_operationName_IS_DEF_THEN_Returns_False()
         {
             const string OperationName = "ABC";
@@ -124,7 +124,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void CanPerformRole_GIVEN_Ctor_user_Is_Null_THEN_Returns_False()
         {
             var mockedIdentity = new Mock<IJumbleblocksIdentity>();
@@ -137,7 +137,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void CanPerformRole_GIVEN_Ctor_user_Has_Role_But_Identity_Is_Not_Authenticated_THEN_Returns_False()
         {
             const string RoleName = "ABC";
@@ -157,7 +157,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void CanPerformRole_GIVEN_Ctor_user_Has_Role_And_Identity_Is_Authenticated_THEN_Returns_True()
         {
             const string RoleName = "ABC";
@@ -177,7 +177,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeTrue();
         }
 
-        [Test]
+       [TestMethod]
         public void CanPerformRole_GIVEN_Ctor_user_Does_Not_Have_Role_And_Identity_Is_Authenticated_THEN_Returns_False()
         {
             const string RoleName = "ABC";
@@ -197,7 +197,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void CanPerformOperation_GIVEN_Ctor_user_Is_Null_THEN_Returns_False()
         {
             var mockedIdentity = new Mock<IJumbleblocksIdentity>();
@@ -210,7 +210,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void CanPerformOperation_GIVEN_Ctor_user_Has_Operation_But_Identity_Is_Not_Authenticated_THEN_Returns_False()
         {
             const string OperationName = "ABC";
@@ -233,7 +233,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void CanPerformOperation_GIVEN_Ctor_user_Has_Operation_And_Identity_Is_Authenticated_THEN_Returns_True()
         {
             const string OperationName = "ABC";
@@ -256,7 +256,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeTrue();
         }
 
-        [Test]
+       [TestMethod]
         public void CanPerformOperation_GIVEN_Ctor_user_Does_Not_Have_Operation_And_Identity_Is_Authenticated_THEN_Returns_False()
         {
             const string OperationName = "ABC";

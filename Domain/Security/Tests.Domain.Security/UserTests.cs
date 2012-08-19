@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Domain.Security;
 
 namespace Tests.Jumbleblocks.Domain.Security
 {
-    [TestFixture]
+    [TestClass]
     public class UserTests
     {
-        [Test]
+       [TestMethod]
         public void AddRole_Adds_To_Roles_List()
         {
             var role = new Role { Name = "Role" };
@@ -22,7 +22,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             user.Roles.ShouldContain(role);
         }
 
-        [Test]
+       [TestMethod]
         public void AddRole_GIVEN_User_Has_Role_WHEN_Adding_Same_Role_Again_THEN_Roles_Count_Remains_1()
         {
             var role = new Role { Name = "Role" };
@@ -35,7 +35,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             user.Roles.Count().ShouldEqual(1);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddRole_WHEN_role_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -43,7 +43,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             user.AddRole(null);
         }
 
-        [Test]
+       [TestMethod]
         public void HasRole_GIVEN_User_Has_No_Roles_WHEN_roleName_Is_ABC_THEN_Returns_False()
         {
             var user = new User();
@@ -52,7 +52,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void HasRole_GIVEN_User_Has_Role_With_Name_ABC_WHEN_roleName_Is_ABC_THEN_Returns_True()
         {
             const string RoleName = "ABC";
@@ -66,7 +66,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeTrue();
         }
 
-        [Test]
+       [TestMethod]
         public void HasRole_GIVEN_User_Has_Role_With_Name_ABC_WHEN_roleName_Is_DEF_THEN_Returns_False()
         {
             const string RoleName = "ABC";
@@ -81,7 +81,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void HasOperation_GIVEN_User_Has_No_Roles_WHEN_operationName_Is_ABC_THEN_Returns_False()
         {
             const string CheckForOperationName = "ABC";
@@ -93,7 +93,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void HasOperation_GIVEN_User_Has_1_Role_With_No_Operations_WHEN_operationName_Is_ABC_THEN_Returns_False()
         {
             const string CheckForOperationName = "ABC";
@@ -107,7 +107,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             result.ShouldBeFalse();
         }
 
-        [Test]
+       [TestMethod]
         public void HasOperation_GIVEN_User_Has_1_Role_With_1_Operation_Named_ABC_WHEN_operationName_Is_ABC_THEN_Returns_True()
         {
             const string OperationName = "ABC";

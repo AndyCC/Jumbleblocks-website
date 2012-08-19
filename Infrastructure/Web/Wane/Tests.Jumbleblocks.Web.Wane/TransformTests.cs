@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Web.Wane;
 using System.Web;
@@ -14,7 +14,7 @@ namespace Tests.Jumbleblocks.Web.Wane
     /// <summary>
     /// Tests for transforming 'Wane' syntax to HTML
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class TransformTests
     {
         /// <summary>
@@ -32,7 +32,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             return set;
         }
 
-        [Test]
+       [TestMethod]
         public void WaneTransform_Transform_WHEN_waneText_Is_Null_THEN_Returns_Empty_HtmlString()
         {
             var wane = new WaneTransform(GetBasicDelimeterSet());
@@ -40,7 +40,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             htmlString.ToHtmlString().ShouldEqual(String.Empty);
         }
 
-        [Test]
+       [TestMethod]
         public void WaneTransform_Transform_WHEN_waneText_Is_Empty_String_THEN_Returns_Empty_HtmlString()
         {
             var wane = new WaneTransform(GetBasicDelimeterSet());
@@ -48,7 +48,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             htmlString.ToHtmlString().ShouldEqual(String.Empty);
         }
 
-        [Test]
+       [TestMethod]
         public void WaneTransform_Transform_WHEN_waneText_Is_hashB_text_hashB_THEN_returns_text_Wrapped_In_HTML_Bold_Tags()
         {
             const string text = "text";
@@ -63,7 +63,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             htmlString.ToHtmlString().ShouldEqual(expectedHtml);
         }
 
-        [Test]
+       [TestMethod]
         public void WaneTransform_Transform_WHEN_waneText_Is_hashB_text_THEN_returns_text_as_barSlashB_text()
         {
             const string text = "#btext";
@@ -72,7 +72,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             htmlString.ToHtmlString().ShouldEqual(text);
         }
 
-        [Test]
+       [TestMethod]
         public void WaneTransform_Transform_WHEN_waneText_Is_hashB_class_equals_abc_In_SquareBrackets_text_hashB_THEN_returns_text_wrapped_in_Html_Bold_Tags_With_CSS_Class_Abc()
         {
             const string @class = "abc";
@@ -91,7 +91,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             htmlString.ToHtmlString().ShouldEqual(expectedHtml);
         }
 
-        [Test]
+       [TestMethod]
         public void WaneTransform_Transform_WHEN_waneText_Is_Escape_hashB_text_hashB_THEN_returns_hashB_text_hashB()
         {
             const string text = "text";
@@ -103,7 +103,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             htmlString.ToHtmlString().ShouldEqual(expectedHtml);
         }
 
-        [Test]
+       [TestMethod]
         public void WaneTransform_Transform_WHEN_waneText_Is_Escape_hashB_class_equals_abc_In_SquareBrackets_text_hashB_THEN_returns_hashB_class_equals_abc_In_SquareBrackets_text_hashB()
         {
             const string @class = "abc";

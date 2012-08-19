@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Domain.Security;
 using Jumbleblocks.Core;
@@ -12,24 +12,24 @@ using Jumbleblocks.Core.Cryptography;
 
 namespace Tests.Jumbleblocks.Domain.Security
 {
-    [TestFixture]
+    [TestClass]
     public class SecurityServiceTests
     {
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_WHEN_userRepository_Is_Null_THEN_Throws_ArgumentNullException()
         {
             new SecurityService(null, new Mock<IStringHasher>().Object);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_WHEN_passwordHasher_Is_Null_THEN_Throws_ArgumentNullException()
         {
             new SecurityService(new Mock<IUserRepository>().Object, null);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void RetrievePrincipal_WHEN_Username_Is_Null_THEN_Throws_StringArgumentNullOrEmptyException()
         {
@@ -39,7 +39,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             securityService.RetrievePrincipal(null, "abc");
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void RetrievePrincipal_WHEN_Username_Is_EmptyString_THEN_Throws_StringArgumentNullOrEmptyException()
         {
@@ -49,7 +49,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             securityService.RetrievePrincipal(String.Empty, "abc");
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void RetrievePrincipal_WHEN_Password_Is_Null_THEN_Throws_StringArgumentNullOrEmptyException()
         {
@@ -59,7 +59,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             securityService.RetrievePrincipal("abc", null);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void RetrievePrincipal_WHEN_Password_Is_EmptyString_THEN_Throws_StringArgumentNullOrEmptyException()
         {
@@ -69,7 +69,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             securityService.RetrievePrincipal("abc", String.Empty);
         }
 
-        [Test]
+       [TestMethod]
         public void RetrievePrincipal_GIVEN_UserRepository_LoadForUsername_Returns_Null_THEN_Returns_Principal_With_Identity_JumbleblocksAnonymousIdentity()
         {
             var mockedRepository = new Mock<IUserRepository>();
@@ -82,7 +82,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             principal.Identity.ShouldBeInstanceOfType(typeof(JumbleblocksAnonymousIdentity));
         }
 
-        [Test]
+       [TestMethod]
         public void RetrievePrincipal_GIVEN_User_COntains_User_With_Username_ABC_Password_That_Is_An_MD5_Hash_Of_DEF_WHEN_Username_Is_ABC_AND_Password_DEF_THEN_Returns_Principal_With_Identity_Of_Type_JumbleblocksUserIdentity_With_Username_ABC()
         {
             const string Username = "ABC";
@@ -106,7 +106,7 @@ namespace Tests.Jumbleblocks.Domain.Security
             principal.Identity.Name.ShouldEqual(Username);
         }
 
-        [Test]
+       [TestMethod]
         public void RetrievePrincipal_GIVEN_User_Contains_User_With_Username_ABC_Password_That_Is_An_MD5_Hash_Of_DEF_WHEN_Username_Is_ABC_AND_Password_EFG_THEN_Returns_Principal_With_Identity_Of_Type_JumbleblocksAnonymousIdentity()
         {
             const string Username = "ABC";

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using System.Web.Mvc;
 using Moq;
@@ -17,7 +17,7 @@ namespace Tests.Jumbleblocks.Website.Blog
     /// <summary>
     /// Tests for an image controller
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class ImageControllerTests
     {
         private Mock<IImageReferenceRepository> GetMockedImageReferenceRepositoryWith4Images()
@@ -43,7 +43,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             return mockedImageReferenceRepository;
         }
 
-        [Test]
+       [TestMethod]
         public void ImageList_Returns_Json_Result()
         {
             var mockedImageReferenceRepository = GetMockedImageReferenceRepositoryWith4Images();
@@ -54,7 +54,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.ShouldBeInstanceOfType(typeof(JsonResult));
         }
 
-        [Test]
+       [TestMethod]
         public void ImageList_Returns_List_Of_ImageList()
         {
             var mockedImageReferenceRepository = GetMockedImageReferenceRepositoryWith4Images();
@@ -64,7 +64,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             result.Data.ShouldBeInstanceOfType(typeof(ImageList));
         }
 
-        [Test]
+       [TestMethod]
         public void ImageList_Returns_ImageList_Of_ImageListItem_Representing_ImageReferences()
         {
             var mockedImageReferenceRepository = GetMockedImageReferenceRepositoryWith4Images();

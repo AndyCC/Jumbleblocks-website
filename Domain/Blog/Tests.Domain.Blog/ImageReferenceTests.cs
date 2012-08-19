@@ -2,31 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Core;
 using Jumbleblocks.Domain.Blog;
 
 namespace Tests.Jumbleblocks.Blog.Domain
 {
-    [TestFixture]
+    [TestClass]
     public class ImageReferenceTests 
     {
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void Ctor_WHEN_url_Is_Null_THEN_Throws_StringArgumentNullOrEmptyException()
         {
             new ImageReference(null);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void Ctor_WHEN_url_Is_Empty_THEN_Throws_StringArgumentNullOrEmptyException()
         {
             new ImageReference(String.Empty);
         }
 
-        [Test]
+       [TestMethod]
         public void Ctor_WHEN_url_Has_Value_THEN_Sets_Url_Property()
         {
             const string url = "http://www.jumbleblocks.co.uk/noimage.jpg";

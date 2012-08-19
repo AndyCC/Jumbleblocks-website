@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Core;
 using Jumbleblocks.Domain.Blog;
@@ -13,7 +13,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
     /// <post>
     /// Unit tests for BlogPostSummary
     /// </post>
-    [TestFixture]
+    [TestClass]
     public class BlogPostTests 
     {
         protected static ImageReference GetImageReference(int id = 1, string url = "http://www.jumbleblocks.co.uk/noimage.jpg")
@@ -21,21 +21,21 @@ namespace Tests.Jumbleblocks.Blog.Domain
             return new ImageReference(id, url);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void Ctor_WHEN_title_Is_Null_THEN_Throws_StringArgumentNullOrEmptyException()
         {
             new BlogPost(null, "a", "fullArticle", GetImageReference(), DateTime.Now, new BlogUser());
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void Ctor_WHEN_title_Is_EmptyString_THEN_Throws_StringArgumentNullOrEmptyException()
         {
             new BlogPost(String.Empty, "a", "fullArticle", GetImageReference(), DateTime.Now, new BlogUser());
         }
 
-        [Test]
+       [TestMethod]
         public void Ctor_WHEN_title_Is_Abc_THEN_Sets_Title_Property_To_Abc()
         {
             const string title = "ABC";
@@ -44,21 +44,21 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.Title.ShouldEqual(title);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void Ctor_WHEN_description_Is_Null_THEN_Throws_StringArgumentNullOrEmptyException()
         {
             new BlogPost("a", null, "fullArticle", GetImageReference(), DateTime.Now, new BlogUser());
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void Ctor_WHEN_description_Is_EmptyString_THEN_Throws_StringArgumentNullOrEmptyException()
         {
             new BlogPost("a", String.Empty, "fullArticle", GetImageReference(), DateTime.Now, new BlogUser());
         }
 
-        [Test]
+       [TestMethod]
         public void Ctor_WHEN_description_Is_Abc_THEN_Sets_Description_Property_To_Abc()
         {
             const string description = "ABC";
@@ -68,14 +68,14 @@ namespace Tests.Jumbleblocks.Blog.Domain
         }
 
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void Ctor_WHEN_fullArticle_Is_EmptyString_THEN_Throws_StringArgumentNullOrEmptyException()
         {
             new BlogPost("a", "description", String.Empty, GetImageReference(), DateTime.Now, new BlogUser());
         }
 
-        [Test]
+       [TestMethod]
         public void Ctor_WHEN_fullArticle_Is_Abc_THEN_Sets_FullArticle_Property_To_Abc()
         {
             const string fullArticle = "ABC";
@@ -84,7 +84,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.FullArticle.ShouldEqual(fullArticle);
         }
 
-        [Test]
+       [TestMethod]
         public void Ctor_WHEN_publishedDate_Is_Now_THEN_Sets_PublishDate_Property_To_Now()
         {
             var now = DateTime.Now;
@@ -93,14 +93,14 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.PublishedDate.ShouldEqual(now);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_WHEN_author_Is_Null_THEN_Throws_StringArgumentNullOrEmptyException()
         {
             new BlogPost("a", "b", "c", GetImageReference(), DateTime.Now, null);
         }
 
-        [Test]
+       [TestMethod]
         public void Ctor_WHEN_author_has_value_THEN_Sets_Author_Property_To_That_Value()
         {
             var author = new BlogUser();
@@ -123,7 +123,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
 
         //}
 
-        [Test]
+       [TestMethod]
         public void Ctor_ImageUrl_Returns_Same_Url_As_In_ImageReference()
         {
             var imageReference = GetImageReference();
@@ -131,7 +131,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.ImageUrl.ShouldEqual(new Uri(imageReference.Url));
         }
 
-        [Test]
+       [TestMethod]
         public void ImageUrl_If_ImageReference_Is_Null_THEN_Returns_NULL()
         {
             BlogPost postAsIfCreatedFromDb = TestHelpers.CreateClassFromCtor<BlogPost>();
@@ -139,7 +139,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             postAsIfCreatedFromDb.ImageUrl.ShouldBeNull("ImageUrl Should Be Null");
         }
 
-        [Test]
+       [TestMethod]
         public void ImageUrl_If_ImageReference_Url_Is_Absolute_THEN_Returns_Absolute_Url()
         {
             var imageReference = GetImageReference(url:"http://www.jumbleblocks.co.uk/noimage.jpg");
@@ -147,7 +147,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.ImageUrl.ShouldEqual(new Uri(imageReference.Url));
         }
 
-        [Test]
+       [TestMethod]
         public void ImageUrl_If_ImageReference_Url_Is_Relative_THEN_Returns_Relative_Url()
         {
             var imageReference = GetImageReference(url: "/noimage.jpg");
@@ -155,7 +155,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.ImageUrl.ShouldEqual(new Uri(imageReference.Url, UriKind.Relative));
         }
 
-        [Test]
+       [TestMethod]
         public void UpdateTags_GIVEN_No_Tags_THEN_Adds_tags_Parameter_To_Tags_Property()
         {
             var tag = new Tag { Text = "Tag1" };
@@ -171,7 +171,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.Tags.ShouldContainAll(tags);
         }
 
-        [Test]
+       [TestMethod]
         public void UpdateTags_GIVEN_No_Tags_WHEN_tags_Parameter_Contains_two_Tags_With_Differnt_Texts_THEN_Only_Adds_1_Tag()
         {
             var tag1 = new Tag { Text = "Tag1" };
@@ -190,7 +190,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.Tags.Count().ShouldEqual(1);
         }
 
-        [Test]
+       [TestMethod]
         public void UpdateTags_GIVEN_1_Tag_Exists_With_Text_Tag1_WHEN_Adding_Tag_With_Text_Tag2_THEN_Tags_Property_Contains_Tag1_And_Tag2()
         {
             var tag1 = new Tag { Text = "Tag1" };
@@ -212,7 +212,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.Tags.ShouldContain(tag2);
         }
 
-        [Test]
+       [TestMethod]
         public void UpdateTags_GIVEN_1_Tag_Exists_With_Tag1_WHEN_Adding_Tag2_And_removeUnfound_Is_True_THEN_Tags_Property_Contains_Tag2_Only()
         {
             var tag1 = new Tag { Text = "Tag1" };
@@ -234,7 +234,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.Tags.ShouldContain(tag2);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateTags_WHEN_tags_Parameter_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -244,7 +244,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.UpdateTags(null, false);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSeries_WHEN_series_parameter_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -254,7 +254,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.UpdateSeries(null);
         }
 
-        [Test]
+       [TestMethod]
         public void UpdateSeries_Sets_Series_Property_To_series_parameter()
         {
             var series = new Series { Name = "Test" };
@@ -266,7 +266,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.Series.ShouldEqual(series);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void UpdateTitle_WHEN_newTitle_parameter_is_null_THEN_Throws_StringArgumentNullOrEmptyException()
         {
@@ -276,7 +276,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.UpdateTitle(null);
         }
 
-        [Test]
+       [TestMethod]
         public void UpdateTitle_WHEN_sets_Title_Property_To_Trimmed_Text_Of_newTitle_parameter()
         {
             const string NewTitle = "New Title  ";
@@ -289,7 +289,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.Title.ShouldEqual(NewTitle.Trim());
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void UpdateDescription_WHEN_newDescription_parameter_is_null_THEN_Throws_StringArgumentNullOrEmptyException()
         {
@@ -299,7 +299,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.UpdateDescription(null);
         }
 
-        [Test]
+       [TestMethod]
         public void UpdateDescription_WHEN_sets_Description_Property_To_Trimmed_Text_Of_newDescription_parameter()
         {
             const string NewDescription = "New Description  ";
@@ -312,7 +312,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.Description.ShouldEqual(NewDescription.Trim());
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(StringArgumentNullOrEmptyException))]
         public void UpdateFullArticle_WHEN_newFullArticle_parameter_is_null_THEN_Throws_StringArgumentNullOrEmptyException()
         {
@@ -322,7 +322,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.UpdateFullArticle(null);
         }
 
-        [Test]
+       [TestMethod]
         public void UpdateFullArticle_WHEN_sets_FullArticle_Property_To_Trimmed_Text_Of_newFullArticle_parameter()
         {
             const string NewFullText = "New Full Text  ";
@@ -335,7 +335,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.FullArticle.ShouldEqual(NewFullText.Trim());
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateImageReference_WHEN_newImageReference_parameter_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -345,7 +345,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.UpdateImageReference(null);
         }
 
-        [Test]
+       [TestMethod]
         public void UpdateImageReference_Sets_ImageReference_Property_To_newImageReference_parameter()
         {
             var imageReference1 = GetImageReference();
@@ -357,7 +357,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.ImageReference.ShouldEqual(imageReference2);
         }
 
-        [Test]
+       [TestMethod]
         public void UpdateImageReference_WHEN_newImageReference_parameter_Has_Same_Id_As_Existing_ImageReference_THEN_Does_Not_Update_ImageReference_Property()
         {
             var imageReference1 = GetImageReference();
@@ -369,7 +369,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.ImageReference.ShouldEqual(imageReference1);
         }
 
-        [Test]
+       [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MarkAsDeleted_WHEN_User_Is_Null_Throws_ArgumentNullException()
         {
@@ -379,7 +379,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.MarkAsDeleted(null as BlogUser);
         }
 
-        [Test]
+       [TestMethod]
         public void MarkAsDeleted_Sets_DeletedDate_To_Now_And_DeletedByUser_Property_To_deltedByUser_parameter()
         {
             var deletionUser = new BlogUser { Id = 1, Forenames = "Joe", Surname = "Bloggs" };
@@ -393,7 +393,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.DeletedByUser.ShouldEqual(deletionUser);
         }
 
-        [Test]
+       [TestMethod]
         public void MarkAsDeleted_GIVEN_Already_Marked_As_Deleted_WHEN_MarkAsDeleted_Called_A_Second_Time_THEN_Does_Not_Update_DeletedDate()
         {
             TimeSpan waitBetweenUpdates = new TimeSpan(0, 0, 0, 0, 100);
@@ -412,7 +412,7 @@ namespace Tests.Jumbleblocks.Blog.Domain
             post.DeletedDate.ShouldNotBeWithinLast(waitBetweenUpdates);
         }
 
-        [Test]
+       [TestMethod]
         public void MarkAsDeleted_GIVEN_Already_Marked_As_Deleted_WHEN_MarkAsDeleted_Called_A_Second_Time_With_A_Differnt_User_THEN_Does_Not_Update_DeletedByUser()
         {
             TimeSpan waitBetweenUpdates = new TimeSpan(0, 0, 0, 0, 500);

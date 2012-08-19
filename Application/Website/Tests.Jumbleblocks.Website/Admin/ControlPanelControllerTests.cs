@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using System.Web.Mvc;
 using System.Dynamic;
@@ -11,10 +11,10 @@ using Jumbleblocks.Website.Controllers.Admin;
 
 namespace Tests.Jumbleblocks.Website.Admin
 {
-    [TestFixture]
+    [TestClass]
     public class ControlPanelControllerTests
     {
-        [Test]
+       [TestMethod]
         public void Index_Returns_ViewResult()
         {
             var controller = new ControlPanelController();
@@ -22,7 +22,7 @@ namespace Tests.Jumbleblocks.Website.Admin
             result.ShouldBeInstanceOfType(typeof(ViewResult));
         }
 
-        [Test]
+       [TestMethod]
         public void Index_Returns_ControlPanel_View()
         {
             var controller = new ControlPanelController();
@@ -31,7 +31,7 @@ namespace Tests.Jumbleblocks.Website.Admin
             ((ViewResult)result).ViewName.ShouldEqual("ControlPanel");
         }
 
-        [Test]
+       [TestMethod]
         public void Index_Returns_ViewModel_Of_ControlPanelViewModel()
         {
             var controller = new ControlPanelController();
@@ -40,7 +40,7 @@ namespace Tests.Jumbleblocks.Website.Admin
             ((ViewResult)result).Model.ShouldBeInstanceOfType(typeof(ControlPanelViewModel));
         }
 
-        [Test]
+       [TestMethod]
         public void Index_Returns_ViewModel_With_AdminSectionViewModel_For_Section_Blog_Posts()
         {
             var controller = new ControlPanelController();
@@ -49,7 +49,7 @@ namespace Tests.Jumbleblocks.Website.Admin
             ((ControlPanelViewModel)result.Model).Sections.SingleOrDefault(asvm => asvm.Name.Equals("Blog Posts")).ShouldNotBeNull();
         }
 
-        [Test]
+       [TestMethod]
         public void Index_Returns_ViewModel_With_Link_To_Create_New()
         {
             var controller = new ControlPanelController();
@@ -63,7 +63,7 @@ namespace Tests.Jumbleblocks.Website.Admin
             createNewLink.ActionName.ShouldEqual("CreateNew");
         }
 
-        [Test]
+       [TestMethod]
         public void Index_Returns_ViewModel_With_Link_To_List_Published()
         {
             const string FilterParamName = "filter";

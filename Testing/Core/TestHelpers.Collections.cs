@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Jumbleblocks.Testing
 {
@@ -10,12 +10,12 @@ namespace Jumbleblocks.Testing
     {
         public static void ShouldContain<T>(this IEnumerable<T> collection, T expected, string message = "")
         {
-            Assert.Contains(expected, new List<T>(collection), message);
+            CollectionAssert.Contains(new List<T>(collection), expected, message);
         }
 
         public static void ShouldContain<T>(this IEnumerable<T> collection, T expected, string message, params object[] messageArguments)
         {
-            Assert.Contains(expected, new List<T>(collection), String.Format(message, messageArguments));
+            CollectionAssert.Contains(new List<T>(collection), expected, String.Format(message, messageArguments));
         }
 
         public static void ShouldContain<T>(this IEnumerable<T> collection, Func<T, bool> matchMethod, string message = "")
@@ -43,7 +43,7 @@ namespace Jumbleblocks.Testing
 
         public static void ShouldNotContain<T>(this IEnumerable<T> collection, T expected, string message = "")
         {
-            Assert.False(collection.Contains(expected), "Should not contain failed. {0}", message);
+            Assert.IsFalse(collection.Contains(expected), "Should not contain failed. {0}", message);
         }
     }
 }

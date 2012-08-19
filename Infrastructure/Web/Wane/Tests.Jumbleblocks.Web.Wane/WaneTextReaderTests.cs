@@ -2,39 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jumbleblocks.Testing;
 using Jumbleblocks.Web.Wane;
 using Jumbleblocks.Web.Wane.ParseRules.Delimeters;
 
 namespace Tests.Jumbleblocks.Web.Wane
 {
-    [TestFixture]
+    [TestClass]
     public class WaneTextReaderTests
     {
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Ctor_WHEN_delimiters_Is_Null_THEN_Throw_ArgumentNullException()
         {
             var reader = new WaneTextReader(null);
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Ctor_WHEN_delimiters_Is_Empty_Array_THEN_Throws_ArgumentException()
         {
             var reader = new WaneTextReader(new string[0]);
         }
 
-        [Test]
+        [TestMethod]
         public void SetText_WHEN_text_Is_Null_THEN_Sets__IsEndOfStream_To_True()
         {
-            var reader = new WaneTextReader(new string[]{DefaultDelimeterValues.Bold});
+            var reader = new WaneTextReader(new string[] { DefaultDelimeterValues.Bold });
             reader.SetText(null);
             reader.IsEndOfStream.ShouldBeTrue();
         }
 
-        [Test]
+        [TestMethod]
         public void SetText_WHEN_text_Is_EmptyString_THEN_Sets__IsEndOfStream_To_True()
         {
             var reader = new WaneTextReader(new string[] { DefaultDelimeterValues.Bold });
@@ -42,7 +42,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             reader.IsEndOfStream.ShouldBeTrue();
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void FindToken_GIVEN_SetText_Has_Not_Been_Called_THEN_Throws_InvalidOperationException()
         {
@@ -50,7 +50,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             reader.ReadNextToken();
         }
 
-        [Test]
+        [TestMethod]
         public void ReadNextToken_GIVEN_Setup_text_Is_abc_AND_delimiters_Contains_Bold_THEN_Returns_1_Token_For_The_Text()
         {
             const string text = "abc";
@@ -66,7 +66,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             token.LinePosition.ShouldEqual(1);
         }
 
-        [Test]
+        [TestMethod]
         public void ReadNextToken_GIVEN_Setup_text_Is_abc_AND_delimiters_Contains_Bold_THEN_Sets_IsEndOfText_To_True()
         {
             const string text = "abc";
@@ -78,7 +78,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             reader.IsEndOfStream.ShouldBeTrue();
         }
 
-        [Test]
+        [TestMethod]
         public void ReadNextToken_GIVEN_Setup_text_Is_abc_hashB_def_AND_delimiters_Contains_BOLD_WHEN_FindToken_Called_For_First_Time_THEN_Returns_Token_For_Text_abc()
         {
             const string firstTokenText = "abc";
@@ -95,7 +95,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             token.CharPosition.ShouldEqual(1);
         }
 
-        [Test]
+        [TestMethod]
         public void ReadNextToken_GIVEN_IsEndOfText_Is_True_THEN_Returns_Null()
         {
             const string text = "abc";
@@ -109,7 +109,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             reader.ReadNextToken().ShouldBeNull();
         }
 
-        [Test]
+        [TestMethod]
         public void ReadNextToken_GIVEN_Setup_text_Is_abc_hashB_def_AND_delimiters_Contains_BOLD_WHEN_FindToken_Called_For_First_Time_THEN_Sets_IsEndOfText_To_False()
         {
             const string firstTokenText = "abc";
@@ -120,14 +120,14 @@ namespace Tests.Jumbleblocks.Web.Wane
 
             reader.ReadNextToken();
 
-            reader.IsEndOfStream.ShouldBeFalse();    
+            reader.IsEndOfStream.ShouldBeFalse();
         }
 
-        [Test]
+        [TestMethod]
         public void ReadNextToken_GIVEN_Setup_text_Is_abc_hashB_def_AND_delimiters_Contains_BOLD_WHEN_FindToken_Called_For_Second_Time_THEN_Returns_Token_For_Delimeter_Bold()
         {
             const string secondTokenText = "#b";
-            const string text ="abc"+secondTokenText+"def";
+            const string text = "abc" + secondTokenText + "def";
 
             var reader = new WaneTextReader(new string[] { DefaultDelimeterValues.Bold });
             reader.SetText(text);
@@ -141,7 +141,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             token.CharPosition.ShouldEqual(4);
         }
 
-        [Test]
+        [TestMethod]
         public void ReadNextToken_GIVEN_Setup_text_Is_abc_hashB_def_AND_delimiters_Contains_BOLD_WHEN_FindToken_Called_For_Second_Time_THEN_Sets_IsEndOfText_To_False()
         {
             const string secondTokenText = "#b";
@@ -156,7 +156,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             reader.IsEndOfStream.ShouldBeFalse();
         }
 
-        [Test]
+        [TestMethod]
         public void ReadNextToken_GIVEN_Setup_text_Is_abc_hashB_def_AND_delimiters_Contains_BOLD_WHEN_FindToken_Called_For_Third_Time_THEN_Returns_Token_For_Text_def()
         {
             const string thirdTokenText = "def";
@@ -175,7 +175,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             token.CharPosition.ShouldEqual(6);
         }
 
-        [Test]
+        [TestMethod]
         public void ReadNextToken_GIVEN_Setup_text_Is_abc_hashB_def_AND_delimiters_Contains_BOLD_WHEN_FindToken_Called_For_Third_Time_THEN_Sets_IsEndOfText_To_False()
         {
             const string thirdTokenText = "def";
@@ -191,7 +191,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             reader.IsEndOfStream.ShouldBeTrue();
         }
 
-        [Test]
+        [TestMethod]
         public void ReadNextToken_GIVEN_Setup_text_Is_hashb_hashi_newline_abc_hashi_hashB_WHEN_Six_Calls_Made_To_FindToken_Correct_Delimiters_And_Text_Tokens_Returned_In_CorrectOrder()
         {
             const string newLine = "\n";
@@ -228,7 +228,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             sixthToken.Text.ShouldEqual(DefaultDelimeterValues.Bold, "Sixth Token : text incorrect");
         }
 
-        [Test]
+        [TestMethod]
         public void Find_GIVEN_text_hashb_WHEN_tokenTextToFind_is_hashB_THEN_Returns_Token_For_hashB()
         {
             const string Text = "ABC";
@@ -245,7 +245,7 @@ namespace Tests.Jumbleblocks.Web.Wane
             foundToken.Text.ShouldEqual(DefaultDelimeterValues.Bold, "text incorrect");
         }
 
-        [Test]
+        [TestMethod]
         public void Find_GIVEN_text_hashb_WHEN_tokenTextToFind_is_hashI_THEN_Returns_Null()
         {
             const string Text = "ABC";
