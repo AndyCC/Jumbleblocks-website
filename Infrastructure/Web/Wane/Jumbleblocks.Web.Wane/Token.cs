@@ -2,8 +2,6 @@
 using System.Dynamic;
 using System.Collections.Generic;
 
-//TODO: get rid of dynamic?
-
 namespace Jumbleblocks.Web.Wane
 {
     /// <summary>
@@ -159,7 +157,7 @@ namespace Jumbleblocks.Web.Wane
         {
             return _properties.ContainsKey(FormatPropertyName(propertyName));
         }
-      
+
         /// <summary>
         /// Dynamic method to get a property value
         /// </summary>

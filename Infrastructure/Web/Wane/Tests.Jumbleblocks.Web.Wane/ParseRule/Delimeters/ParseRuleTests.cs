@@ -13,7 +13,7 @@ namespace Tests.Jumbleblocks.Web.Wane.ParseRule.Delimeters
     [TestClass]
     public class ParseRuleTests
     {
-       [TestMethod]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Transform_WHEN_token_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -21,7 +21,7 @@ namespace Tests.Jumbleblocks.Web.Wane.ParseRule.Delimeters
             parseRule.TransformToHtml(null, new List<PropertyParseRule>(0));
         }
 
-       [TestMethod]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Transform_WHEN_globalPropertyParseRules_Is_Null_THEN_Throws_ArgumentNullException()
         {
@@ -125,7 +125,7 @@ namespace Tests.Jumbleblocks.Web.Wane.ParseRule.Delimeters
             html.ShouldEqual(String.Format("<b class='{0}'>", CssClass));
         }
 
-       [TestMethod]
+        [TestMethod]
         public void Transform_GIVEN_globalParseRule_For_StyleClass_Which_Outputs_id_And_localParseRule_For_StyleClass_Which_Outputs_class_WHEN_Token_Is_For_Bold_THEN_Returns_Result_Of_LocalPropertyParseRule_Which_Is_Bold_With_Class_Attribute()
         {
             const string CssClass = "ABC";

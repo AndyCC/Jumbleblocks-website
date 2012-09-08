@@ -41,7 +41,13 @@
   <ItemGroup>
     <Compile Include="DelimeterSetTests.cs" />
     <Compile Include="Fakes\FakeParseRule.cs" />
+    <Compile Include="ParseRule\Delimeters\AnchorParseRuleTests.cs" />
+    <Compile Include="ParseRule\Delimeters\ImageParseRuleTests.cs" />
     <Compile Include="ParseRule\Delimeters\ParseRuleTests.cs" />
+    <Compile Include="ParseRule\Properties\AltParseRuleTests.cs" />
+    <Compile Include="ParseRule\Properties\HrefParseRuleTests.cs" />
+    <Compile Include="ParseRule\Properties\SrcParseRuleTests.cs" />
+    <Compile Include="ParseRule\Properties\StyleClassParseRuleTests.cs" />
     <Compile Include="WaneTextParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransformTests.cs" />
@@ -57,9 +63,7 @@
       <Name>Jumbleblocks.Web.Wane</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ParseRule\Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

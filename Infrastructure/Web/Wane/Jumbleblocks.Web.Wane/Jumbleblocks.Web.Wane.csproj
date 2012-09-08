@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDelimeterSet.cs" />
+    <Compile Include="ParseRules\Delimeters\AnchorParseRule.cs" />
     <Compile Include="ParseRules\Delimeters\CodeParseRule.cs" />
     <Compile Include="ParseRules\Delimeters\DefaultDelimeterValues.cs" />
     <Compile Include="ParseRules\Delimeters\BoldParseRule.cs" />
@@ -45,8 +46,12 @@
     <Compile Include="DelimeterSet.cs" />
     <Compile Include="IWaneTokenStream.cs" />
     <Compile Include="IWaneTransform.cs" />
+    <Compile Include="ParseRules\Delimeters\ImageParseRule.cs" />
     <Compile Include="ParseRules\Delimeters\ItalicsParseRule.cs" />
+    <Compile Include="ParseRules\Properties\AltParseRule.cs" />
+    <Compile Include="ParseRules\Properties\HrefParseRule.cs" />
     <Compile Include="ParseRules\Properties\PropertyParseRule.cs" />
+    <Compile Include="ParseRules\Properties\SrcParseRule.cs" />
     <Compile Include="ParseRules\Properties\StyleClassParseRule.cs" />
     <Compile Include="PropertyParseElements.cs" />
     <Compile Include="TokenTransformer.cs" />
