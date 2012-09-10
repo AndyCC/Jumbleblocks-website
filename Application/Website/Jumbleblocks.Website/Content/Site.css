@@ -1,4 +1,10 @@
-﻿
+﻿.centreContent 
+{
+    width: 1000px;
+    margin: 0px auto;
+    text-align: left;
+}
+
 #ImageViewer
 {
     display:table;
