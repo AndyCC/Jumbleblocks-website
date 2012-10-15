@@ -6,6 +6,7 @@ using NHibernate.Mapping.ByCode.Conformist;
 using NHibernate.Type;
 using NHibernate.Mapping.ByCode;
 using Jumbleblocks.Domain.Blog;
+using NHibernate;
 
 namespace Jumbleblocks.DAL.Blog
 {
@@ -45,6 +46,8 @@ namespace Jumbleblocks.DAL.Blog
                 map.Column("FullArticle");
                 map.NotNullable(true);
                 map.Lazy(true);
+                map.Type(NHibernateUtil.StringClob);
+                map.Column(c => c.SqlType("VARCHAR(MAX)"));
             });
 
             Property(p => p.PublishedDate, map =>
