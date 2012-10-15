@@ -142,8 +142,11 @@ namespace Jumbleblocks.Website
                                         .OnCreate((ds) =>
                                         {
                                             ds.AddDelimeterParseRule(new BoldParseRule());
+                                            ds.AddDelimeterParseRule(new ItalicsParseRule());
                                             ds.AddDelimeterParseRule(new CodeParseRule());
-                                            ds.AddGlobalPropertyParseRule(new StyleClassParseRule());
+                                            ds.AddDelimeterParseRule(new ImageParseRule());
+                                            ds.AddDelimeterParseRule(new AnchorParseRule());
+                                            ds.AddGlobalPropertyParseRule(new StyleClassParseRule());                                          
                                         }).LifestylePerWebRequest());
 
             container.Register(Component.For<IWaneTransform>()

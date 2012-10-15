@@ -699,7 +699,7 @@ namespace Tests.Jumbleblocks.Website.Blog
             savedPost.Series.Name.ShouldEqual(SeriesName);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void BlogPostController_Save_GIVEN_LoggedIn_User_Has_Id_1_WHEN_UserRepository_Has_User_With_Id_1_THEN_Sets_Author_On_BlogPost_To_That_User()
         {
             const int UserId = 1;
